@@ -1,0 +1,34 @@
+﻿@model Team
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+<div class="mt-5">
+<h1>Edit</h1>
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post" enctype="multipart/form-data" >
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label>Position:</label>
+        <input asp-for="Position"  class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Position"></span>
+    </div>
+    <div>
+        <label>Photo:</label>
+        <input asp-for="Photo" accept="image/*" class="input-group-prepend form-control-file" /><br />
+        <span class="text-danger" asp-validation-for="Photo"></span>
+    </div>
+    <div class="d-flex">
+        <div>
+            <button class="btn  btn-outline-warning" type="submit">Edit</button>
+        </div>
+        <div style="margin-left:15px">
+            <button class="btn btn-outline-primary" asp-controller="team" asp-action="index">Back to list</button>
+        </div>
+    </div>
+</form>
+</div>

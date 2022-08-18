@@ -1,0 +1,50 @@
+﻿@model Team
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<div>
+    <div>
+        <h4>
+            Id
+        </h4>
+        <p>
+            @Model.Id
+        </p>
+    </div>
+    <div>
+        <h4>
+            Name
+        </h4>
+        <p>
+            @Model.Name
+        </p>
+    </div>
+     <div>
+        <h4>
+            Position
+        </h4>
+        <p>
+            @Model.Position
+        </p>
+    </div>
+     <div>
+        <h4>
+            Image
+        </h4>
+        <p><img src="~/assets/images/team/@Model.Image" width="400px" />
+        </p>
+    </div>
+    <form method="post" class="d-flex">
+           <div>
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+        </div>
+          <div class="mx-2">
+            <button class="btn btn-outline-primary" asp-controller="team" asp-action="index">Back to list</button>
+        </div>
+    </form>
+ 
+</div>

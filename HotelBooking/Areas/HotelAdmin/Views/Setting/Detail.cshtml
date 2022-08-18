@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detail</h1>
+
+@model Setting
+<div>
+    <div>
+        <h4>
+            Id
+        </h4>
+        <p>
+            @Model.Id
+        </p>
+    </div>
+    <div>
+        <h4>
+            Key
+        </h4>
+        <p>
+            @Model.Key
+        </p>
+    </div>
+     <div>
+        <h4>
+            Value
+        </h4>
+        <p>
+            @Model.Value
+        </p>
+    </div>
+   <div>
+            <a class="btn btn-outline-primary" asp-controller="setting" asp-action="index">Back to list</a>
+        </div>
+</div>

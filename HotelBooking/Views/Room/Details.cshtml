@@ -1,0 +1,614 @@
+﻿@{
+    Layout = null;
+}
+@model RoomVM
+
+@if (TempData["Rezerv"] != null)
+{
+    <input type="hidden" id="rezervJs" />
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi – Hotel Booking</title>
+    <link rel="shortcut icon" href="~/assets/images/icon/icons8-palm-tree-48.png" type="image/x-icon">
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <!-- css plugin -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/apartment/css/style.css">
+    <style>
+        * {
+            font-family: "Lato";
+        }
+
+        .product-review-stars {
+            padding: 20px 50px 20px 20px;
+            width: 335px !important;
+        }
+
+            .product-review-stars label {
+                text-shadow: 0px 0px 10px black;
+            }
+
+        .visuallyhidden {
+            position: absolute !important;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+
+        .product-review-stars label:after {
+            content: "★";
+            color: inherit;
+            -webkit-transform: scale(4);
+            position: absolute;
+            z-index: 4;
+            left: 0px;
+            transition: all .4s;
+            opacity: 0;
+            color: inherit;
+            visibility: hidden;
+        }
+
+        .product-review-stars input:checked + label:after {
+            visibility: visible;
+            -webkit-transform: scale(1);
+            opacity: 1;
+        }
+
+        .product-review-stars {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            width: 335px !important;
+        }
+
+            .product-review-stars label {
+                font-family: "icomoon";
+                font-size: 2em;
+                position: relative;
+                cursor: pointer;
+                color: #DFE3E4;
+            }
+
+            .product-review-stars input:checked ~ label:before {
+                opacity: 1;
+            }
+
+            .product-review-stars:hover input ~ label:before {
+                opacity: 0;
+            }
+
+            .product-review-stars input + label:before {
+                content: "\2605";
+                position: absolute;
+                right: 0;
+                opacity: 0;
+                transition: opacity .3s ease-in-out, color .3s ease-in-out;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden; /* Chrome and Safari */
+                -moz-backface-visibility: hidden; /* Firefox */
+                -ms-backface-visibility: hidden; /* Internet Explorer */
+            }
+
+            .product-review-stars input + label:hover:before,
+            .product-review-stars input + label:hover ~ label:before {
+                opacity: 1;
+            }
+
+            .product-review-stars input + label:nth-of-type(1):after,
+            .product-review-stars input + label:nth-of-type(1):before,
+            .product-review-stars input + label:nth-of-type(1):hover:before,
+            .product-review-stars input + label:nth-of-type(1):hover ~ label:before,
+            .product-review-stars input:nth-of-type(1):checked ~ label:before {
+                color: #2ecc71;
+            }
+
+            .product-review-stars input + label:nth-of-type(2):after,
+            .product-review-stars input + label:nth-of-type(2):before,
+            .product-review-stars input + label:nth-of-type(2):hover:before,
+            .product-review-stars input + label:nth-of-type(2):hover ~ label:before,
+            .product-review-stars input:nth-of-type(2):checked ~ label:before {
+                color: #f1c40f;
+            }
+
+            .product-review-stars input + label:nth-of-type(3):after,
+            .product-review-stars input + label:nth-of-type(3):before,
+            .product-review-stars input + label:nth-of-type(3):hover:before,
+            .product-review-stars input + label:nth-of-type(3):hover ~ label:before,
+            .product-review-stars input:nth-of-type(3):checked ~ label:before {
+                color: #F39C12;
+            }
+
+            .product-review-stars input + label:nth-of-type(4):after,
+            .product-review-stars input + label:nth-of-type(4):before,
+            .product-review-stars input + label:nth-of-type(4):hover:before,
+            .product-review-stars input + label:nth-of-type(4):hover ~ label:before,
+            .product-review-stars input:nth-of-type(4):checked ~ label:before {
+                color: #e74c3c;
+            }
+
+            .product-review-stars input + label:nth-of-type(5):after,
+            .product-review-stars input + label:nth-of-type(5):before,
+            .product-review-stars label:nth-of-type(5):hover:before,
+            .product-review-stars input:nth-of-type(5):checked ~ label:before {
+                color: #d35400;
+            }
+
+            .product-review-stars label:nth-of-type(5):hover:before {
+                color: #d35400 !important;
+            }
+
+        .StarRate {
+            color: #cfa86e;
+            text-decoration: none;
+            transition: 0.3s ease all;
+            background: transparent;
+            z-index: 1;
+            font-size: 18px;
+            font-weight: 500;
+            font-family: "PT Sans", sans-serif;
+            letter-spacing: 0.5px;
+            line-height: normal;
+            text-transform: capitalize;
+            display: inline-block;
+            text-align: center;
+            padding: 10px 35px;
+            border: 2px solid #cfa86e;
+            border-radius: 0;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+            outline: none;
+            margin-bottom: 50px;
+            margin-left: 74px;
+        }
+
+            .StarRate::before {
+                transition: 0.5s all ease;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                right: 50%;
+                bottom: 0;
+                opacity: 0;
+                content: "";
+                background-color: #cfa86e;
+                z-index: -2;
+                box-sizing: border-box;
+            }
+
+            .StarRate:hover {
+                color: #FFF;
+                background: transparent;
+            }
+
+                .StarRate:hover::before {
+                    transition: 0.5s all ease;
+                    left: 0;
+                    right: 0;
+                    opacity: 1;
+                }
+    </style>
+
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- back to top -->
+    <div class="back-to-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="top-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="headerwhitelogo").Value" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user">
+                                    <a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li>
+                                                <a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation">
+                                    <a href="#">
+                                        <i class="fa-regular fa-bookmark"></i>Reservations
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <!-- main start -->
+    <main>
+        <!-- intro start -->
+        <section id="intro">
+            <div class="bg-color"></div>
+            <div class="title">
+                <span class="subtitle">@Model.Room.Location</span>
+                <h1>
+                    <span>@Model.Room.Title</span>
+                </h1>
+            </div>
+            <a href="#panel" class="scroll-to">
+                Scroll
+                <span class="scroll-line"></span>
+            </a>
+        </section>
+        <!-- intro end -->
+        <section id="panel">
+            <div class="bottom-panel">
+                <div class="row m-0 p-0 common">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12  col-xl-8 p-0 m-0">
+                        <div class="row m-0 room-details">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="detail-item">
+                                    <i class="fa-solid fa-maximize"></i>
+                                    <span>@Model.Room.Size sq.</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="detail-item">
+                                    <i class="fa-solid fa-bed"></i>
+                                    <span>
+                                        @Model.Room.NoOfBed Bed
+                                        rooms
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="detail-item">
+                                    <i class="fa-solid fa-bath"></i>
+                                    <span>
+                                        @Model.Room.NoOfBath Bath
+                                        room
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sticky-parent">
+                            <div class="description">
+                                <h3>Description</h3>
+                                <p>
+                                    @Model.Room.Description
+                                </p>
+                            </div>
+                            <div class="amenity">
+                                <h3>Amenity</h3>
+                                <div class="row">
+                                    @foreach (RoomAmentiy item in Model.Room.RoomAmentiys)
+                                    {
+                                        <ul class="col-12 col-sm-12 col-md-4 col-lg-4 list-feature">
+                                            <li>
+                                                <img src="~/assets/images/amenity/@item.Amenity.ImageUrl" alt="">
+                                                @item.Amenity.Name
+                                            </li>
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="owl-carousel owl-theme">
+                                    @foreach (RoomPicture item in Model.Room.RoomPictures.Where(r => r.IsMain == false))
+                                    {
+                                        <div class="item">
+                                            <img src="~/assets/images/rooms/@item.ImagePath" alt="">
+                                        </div>
+                                    }
+                                </div>
+                                <div class="review">
+                                    <div class="title">
+                                        @if (Model.Comment.Id == Model.Comment.RoomId)
+                                        {
+                                            <h3> @Model.Comments.Count  Comments</h3>
+                                        }
+                                        else
+                                        {
+                                            <h3>Comments</h3>
+                                        }
+
+
+
+
+
+                                    </div>
+                                    <div class="mt-4">
+                                        @foreach (var item in Model.Comments)
+
+                                        {
+
+                                            if (Model.Room.Id == item.RoomId)
+                                            {
+                                                <div class="testimonial-item">
+
+                                                    <div class="d-flex" style="color:yellow">
+                                                        @for (int i = 0; i < @item.Star; i++)
+
+                                                        {
+
+                                                            <i class="fa-solid fa-star"></i>
+
+                                                        }
+
+
+                                                    </div>
+                                                    <p>
+                                                        @item.Message
+                                                    </p>
+
+                                                    <div class="author d-flex align-items-center">
+                                                        <div class="img">
+                                                            <img src="~/assets/images/testimonial/a29002da-efbd-449d-afe8-285e47027d78pngwing.com.png" alt="">
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <div>
+                                                                <div class="name">@item.Name</div>
+                                                                <div style="color:#555;">
+                                                                    <i class="fa-solid fa-calendar-days"></i>
+                                                                    <span>@item.CreatedDate</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        }
+                                    </div>
+
+
+
+                                    <form class="form-group" method="post" action="@Url.Action("AddComment")">
+                                        <textarea asp-for="@Model.Comment.Message" cols="100" rows="5" class="form-control"
+                                                  placeholder="Write your comment"></textarea>
+                                        <div class="author d-flex align-items-center mt-3">
+
+                                            <div>
+                                                <div class="row justify-content-between">
+                                                    <div class="col-lg-6">
+                                                        <input class="form-control w-100" type="text"
+                                                               asp-for="Comment.Star" autocomplete="off" placeholder="Rating">
+                                                        @*
+                                                        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+                                                        <div class="product-review-stars">
+                                                        <input type="radio" id="star5" name="rating" value="5" class="visuallyhidden" /><label for="star5" title="Rocks!">★</label>
+                                                        <input type="radio" id="star4" name="rating" value="4" class="visuallyhidden" /><label for="star4" title="Pretty good">★</label>
+                                                        <input type="radio" id="star3" name="rating" value="3" class="visuallyhidden" /><label for="star3" title="Meh">★</label>
+                                                        <input type="radio" id="star2" name="rating" value="2" class="visuallyhidden" /><label for="star2" title="Kinda bad">★</label>
+                                                        <input type="radio" id="star1" name="rating" value="1" class="visuallyhidden" /><label for="star1" title="Sucks big time">★</label>
+                                                        </div>
+                                                        <br />*@
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input class="form-control w-100" type="hidden"
+                                                               asp-for="Comment.Name">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input class="form-control w-100" type="hidden"
+                                                               placeholder="Email" asp-for="Comment.Email">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input class="form-control w-100" type="hidden"
+                                                               value="@Model.Room.Id" asp-for="Comment.RoomId" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-outline-dark" type="submit">Add Comment</button>
+                                        </div>
+                                    </form>
+                                    <div class="pagination">
+                                        <a asp-controller="room" asp-action="details" asp-route-page="@(ViewBag.CurrentPage-1)" class="prev @(ViewBag.CurrentPage == 1 ? "active pointerEvent"  : "") "><i class="fa-solid fa-arrow-left"></i></a>
+                                        <div class="d-flex">
+                                            @for (int i = 1; i <= ViewBag.TotalPage; i++)
+
+                                            {
+                                                <a class="page @(ViewBag.CurrentPage == i ?  "active pointerEvent" : "") " asp-controller="room" asp-action="details" asp-route-page="@i">@i</a>
+                                            }
+
+                                        </div>
+                                        <a asp-controller="room" asp-action="details" asp-route-page="@(ViewBag.CurrentPage+1)" class="next @(ViewBag.CurrentPage == ViewBag.TotalPage ?  "active pointerEvent" : "") "><i class="fa-solid fa-arrow-right"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 p-0 m-0">
+                        <div class="sidebar-booking">
+                            <div class="booking-price">
+                                <div class="title">Price</div>
+                                <div class="price">
+                                    $@Model.Room.Price
+                                    <span> night</span>
+                                </div>
+                            </div>
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <label for="check-in">Dates</label>
+                                    <div class="form-dual d-flex justify-content-center">
+                                        <div class="left-form">
+                                            <input asp-for="@Model.Booking.ArrivalDate" type="datetime-local" id="check-in" placeholder="Select data">
+                                            <span class="icon"></span>
+                                        </div>
+                                        <div class="right-form">
+                                            <input asp-for="@Model.Booking.DepartureDate" type="datetime-local" id="check-out" placeholder="Select data">
+                                            <span class="icon"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 form-group">
+                                        <label for="person-adult">Adults</label>
+                                        <div class="quantity">
+                                            <input asp-for="@Model.Booking.Adults" type="number" id="person-adult" min="1" max="8" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 form-group">
+                                        <label for="person-kid">Kids</label>
+                                        <div class="quantity">
+                                            <input asp-for="@Model.Booking.Children" type="number" id="person-kid" min="1" max="8" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-1 rezervation">
+                                        <button onclick="BtnClick()" type="submit" class="btn w-100">Reservations</button>
+                                    </div>
+                                    <div class="booking-note">
+                                        <span>Until you pay for anything</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- panel end -->
+        <!-- map start -->
+        <section id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.310664802465!2d109.19733871463704!3d12.22723189134728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317067663057facf%3A0xfab2a8d02e83c613!2sSochi%20Hotel%20Nha%20Trang!5e0!3m2!1sen!2s!4v1657999474383!5m2!1sen!2s"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+        <!-- map end -->
+    </main>
+    <!-- main end -->
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twitterurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twittericon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookicon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramicon").Value"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- plugin js -->
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- script js -->
+    <script src="~/assets/js/apartment/script.js"></script>
+    @section Scripts{
+    <script>
+        $(document).ready(function() {
+            if ($("#rezervJs").length) {
+                Command: toastr["success"]("Zerevasiya gozlemededi")
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "7000",
+                    "extendedTimeOut": "2000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        })
+    </script>
+}
+</body>
+
+</html>

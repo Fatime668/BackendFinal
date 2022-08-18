@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="mt-5">
+        <h1>Users</h1>
+        <table class="table table-bordered table-striped mb-4">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th class="text-center">IsBlock</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr >
+                    <td class="text-success">@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Firstname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Lastname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IsBlock)</td>
+                    <td class="text-center">
+
+                        <div class="dropdown custom-dropdown">
+                            <a  asp-controller="account" asp-action="edit" asp-route-id="@item.Id" >
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-primary"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            </a>
+
+                           
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+   

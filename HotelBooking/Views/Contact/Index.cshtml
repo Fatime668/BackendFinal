@@ -1,0 +1,277 @@
+﻿@model Contact
+@{
+    Layout = null;
+}
+@if (TempData["SendMail"] != null)
+{
+    <input type="hidden" id="mailJs" />
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi – Contact Us</title>
+    <link rel="shortcut icon" href="~/assets/images/icon/icons8-palm-tree-48.png" type="image/x-icon">
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- css plugin -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/contact/css/style.css">
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "headerblacklogo").Value" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a class="active" href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user">
+                                    <a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li>
+                                                <a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation">
+                                    <a href="room.html">
+                                        <i class="fa-regular fa-bookmark"></i>Reservations
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <!-- main start -->
+    <main>
+        <!-- contact start -->
+        <section id="contact">
+            <div class="container">
+                <div class="title">
+                    <h1>
+                        <span>GET IN TOUCH</span>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="contact-item">
+                            <h4>Address</h4>
+                            <p>
+                                @layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "streetaddress").Value
+                                <br>
+                                @layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "cityaddress").Value
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="contact-item">
+                            <h4>Contact</h4>
+                            <p>
+                                @layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "contactemail").Value
+                                <br>
+                                @layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "contactphone").Value
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="contact-item">
+                            <h4>
+                                Follow Us
+                            </h4>
+                            <p>
+                                Connect with me on <a style="border-bottom: 1px solid #808080; color: #707C8E" href=" @layoutService.GetSocial().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "facebookurl").Value"> @layoutService.GetSocial().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "facebookname").Value</a>,
+                                <br>
+                                <a style="border-bottom: 1px solid #808080; color: #707C8E" href=" @layoutService.GetSocial().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "twitterurl").Value"> @layoutService.GetSocial().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "twittername").Value</a>
+                                or <a style="border-bottom: 1px solid #707C8E; color: #707C8E " href=" @layoutService.GetSocial().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "instagramurl").Value"> @layoutService.GetSocial().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "instagramname").Value</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact end -->
+        <!-- map start -->
+        <section id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.310664802465!2d109.19733871463704!3d12.22723189134728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317067663057facf%3A0xfab2a8d02e83c613!2sSochi%20Hotel%20Nha%20Trang!5e0!3m2!1sen!2s!4v1657999474383!5m2!1sen!2s"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+        <!-- map end -->
+        <section id="touch">
+            <div class="container">
+                <h2>
+                    Contact Us
+                </h2>
+                <div class="row">
+                    <div class="touchUs col-lg-7 justify-content-center ">
+                        <form method="post" class="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="label" for="name">Full Name</label>
+                                        <input type="text" class="form-control" name="Name" id="Name"
+                                               placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="label" for="email">Email Address</label>
+                                        <input type="email" class="form-control" name="Email" id="Email"
+                                               placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="label" for="subject">Subject</label>
+                                        <input type="text" class="form-control text" name="Subject" id="Subject"
+                                               placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="label" for="#">Message</label>
+                                        <textarea name="Content" class="form-control" id="Content" cols="30" rows="4"
+                                                  placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn  btn-primary">Send Your Message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!-- main end -->
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twitterurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twittericon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookicon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramicon").Value"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- js plugin -->
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- script js -->
+    <script src="~/assets/js/contact/script.js"></script>
+    <script>
+        $(document).ready(function() {
+            if ($("#mailJs").length) {
+                Command: toastr["success"]("Your message has been sent successfully")
+
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-left",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+
+
+        })
+
+    </script>
+</body>
+
+</html>

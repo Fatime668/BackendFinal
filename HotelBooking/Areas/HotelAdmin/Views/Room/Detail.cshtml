@@ -1,0 +1,78 @@
+﻿@model Room
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detail</h1>
+
+<div>
+    <div>
+        <h4>Id: </h4>
+        <p>
+            @Model.Id
+        </p>
+    </div>
+    <div>
+        <h4>Name: </h4>
+        <p>
+            @Model.Title
+        </p>
+    </div>
+    <div>
+        <h4>Price: </h4>
+        <p>
+            @Model.Price
+        </p>
+    </div>
+    <div>
+        <h4>Description: </h4>
+        <p>
+            @Model.Description
+        </p>
+    </div>
+    <div>
+        <h4>Location: </h4>
+        <p>
+            @Model.Location
+        </p>
+    </div>
+    <div>
+        <h4>IsFeatured: </h4>
+        <p>
+            @Model.IsFeatured
+        </p>
+    </div>
+    <div>
+        <h4>IsPopular: </h4>
+        <p>
+            @Model.IsPopular
+        </p>
+    </div>
+    <div>
+        <h4>Beds: </h4>
+        <p>
+            @Model.NoOfBed
+        </p>
+    </div>
+    <div>
+        <h4>Baths: </h4>
+        <p>
+            @Model.NoOfBath
+        </p>
+    </div>
+    <div>
+        <h4>Main Image: </h4>
+        <img style="width:150px; height:150px;" src="~/assets/images/rooms/@Model.RoomPictures.FirstOrDefault(p => p.IsMain == true).ImagePath" alt="Room Images" />
+    </div>
+    <div>
+        <h4>Another Images: </h4>
+        @foreach (var image in Model.RoomPictures.Where(r=>r.IsMain==false))
+        {
+            <img style="width:150px; height:150px;"  src="~/assets/images/rooms/@image.ImagePath" alt="Room Images" />
+        }
+    </div>
+    <div class="my-3">
+        <a class="btn btn-outline-dark" asp-controller="room" asp-action="index">Back To List</a>
+    </div>
+</div>

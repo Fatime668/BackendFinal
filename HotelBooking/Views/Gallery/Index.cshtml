@@ -1,0 +1,228 @@
+﻿
+@{
+    Layout = null;
+}
+@model GalleryVM
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi – Gallery</title>
+    <link rel="shortcut icon" href="~/assets/images/icon/icons8-palm-tree-48.png" type="image/x-icon">
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+        rel="stylesheet">
+    <!-- plugin css -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+        integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/gallery/css/style.css">
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- back to top -->
+    <div class="back-to-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="top-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/logo-black.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a class="active" href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user"><a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li><a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation"><a href="room.html"><i
+                                            class="fa-regular fa-bookmark"></i>Reservations</a></li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <!-- main start -->
+    <main>
+        <!-- gallery start -->
+        <section id="gallery">
+            <div class="container">
+                <div class="title">
+                    <h1>
+                        <span>Gallery.</span>
+                    </h1>
+                    <p>Sochi has a lot to offer for anyone who loves nature, sports, history, sunny <br> beach leisure
+                        and
+                        active adventures.</p>
+                </div>
+                <ul class="gallaryId d-flex m-0 p-0">
+                    <li class="list m-2 @(Model.CategoryId==null ? "active" : "")" data-filter="All"><a href="@Url.Action("Index","Gallery")">All</a></li>
+                    @foreach (var item in Model.Categories)
+                    {
+                    <li class="list m-2 @(Model.CategoryId==item.Id ? "active" : "")" data-filter="@item.Name"><a href="@Url.Action("Index","Gallery",new {CategoryId = item.Id})">@item.Name</a></li>
+                        
+                    }
+          
+                </ul>
+                <div class="images">
+                   @foreach (var item in Model.Galleries)
+                    {
+                         if (item.CategoryId ==2)
+                        {
+                              <div class="itemBox @item.Category.Name">
+                        <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
+                            <img src="~/assets/images/gallery/all/@item.ImagePath" alt="">
+                        </a>
+                        <div class="image-detail">
+                            <span>@item.Subtitle</span>
+                            <h4>@item.Title</h4>
+                        </div>
+                    </div>
+                        }
+                         if (item.CategoryId==3)
+                        {
+                              <div class="itemBox @item.Category.Name">
+                        <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
+                            <img src="~/assets/images/gallery/all/@item.ImagePath" alt="">
+                        </a>
+                        <div class="image-detail">
+                            <span>@item.Subtitle</span>
+                            <h4>@item.Title</h4>
+                        </div>
+                    </div>
+                        }
+                          if (item.CategoryId==4)
+                        {
+                              <div class="itemBox @item.Category.Name">
+                        <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
+                            <img src="~/assets/images/gallery/all/@item.ImagePath" alt="">
+                        </a>
+                        <div class="image-detail">
+                            <span>@item.Subtitle</span>
+                            <h4>@item.Title</h4>
+                        </div>
+                    </div>
+                        }
+                    }
+                
+                </div>
+            </div>
+        </section>
+        <!-- gallery end -->
+    </main>
+    <!-- main end -->
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="#"><i class="fa-brands fa-facebook-square"></i></a></li>
+                            <li class="ms-4"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li class="ms-4"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- plugin js -->
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+        integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- script js -->
+    <script src="~/assets/js/gallery/script.js"></script>
+   @* <script>
+        $(".gallaryId").on("change",function(){
+              let url = $(this).val();
+            window.location.href = url;
+        })
+    </script>*@
+</body>
+
+</html>

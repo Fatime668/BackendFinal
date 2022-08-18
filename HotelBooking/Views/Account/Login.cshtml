@@ -1,0 +1,201 @@
+﻿
+@{
+    Layout = null;
+}
+@model LoginVM
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi-Register Page</title>
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" href="~/assets/images/icon/user (1).png" type="image/x-icon">
+    <!-- plugins link -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/login/css/style.css">
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/logo-black.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user">
+                                    <a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li>
+                                                <a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation">
+                                    <a href="#">
+                                        <i class="fa-regular fa-bookmark"></i>Reservations
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <main>
+        <section id="middle">
+            <div class="bg-color"></div>
+            <div class="title text-center">
+                <h2>Login PAGE</h2>
+                <ul class="d-flex justify-content-center align-items-center m-0 p-0">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="ms-5"><a class="active" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </section>
+        <section id="login">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-6">
+                        <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                        <form method="post">
+                            <div class="login-form">
+                                <h4 class="login-title">Login</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Username</label>
+                                        <div class="input-field">
+                                            <i class="fa-solid fa-user"></i>
+                                            <input asp-for="Username" type="text" placeholder="Username">
+                                            <span class="text-danger" asp-validation-for="Username"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Password</label>
+                                        <div class="input-field">
+                                            <i class="fa-solid fa-lock"></i>
+                                            <input asp-for="Password" type="password" placeholder="Password" id="myInput">
+                                            <span class="showhide" onclick="myFunction()">
+                                                <i class="fa-solid fa-eye" id="hide1"></i>
+                                                <i class="fa-solid fa-eye-slash" id="hide2"></i>
+                                            </span>
+                                            <span class="text-danger" asp-validation-for="Password"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12 my-2 d-flex justify-content-start align-items-center">
+                                        <div class="form-check">
+                                            <label class="form-check-label text-muted" style="cursor:pointer">
+                                                <input asp-for="RememberMe" type="checkbox" class="form-check-input">
+                                                Keep me signed in
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12  my-2  d-flex justify-content-end align-items-center">
+                                        <label class="form-check-label text-muted">
+                                            <a class="tooltip-inner" asp-controller="account" asp-action="forgotpassword" style="cursor:pointer">Forgot Password</a>
+                                        </label>
+                                    </div>
+                                    <div class="col-12 d-flex align-items-center">
+                                        <button type="submit" class="btn btn-custom-size lg-size btn-pronia-primary">Login</button>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <label> Already have an account? <a asp-controller="account" asp-action="register">Sign in</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twitterurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twittericon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookicon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramicon").Value"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <script src="~/assets/js/login/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi – @ViewData["Title"]</title>
+
+    <link rel="shortcut icon" href="~/assets/images/icon/icons8-palm-tree-48.png" type="image/x-icon">
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- datetime plugin -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/index/css/style.css">
+    @RenderSection("Links",required:false)
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- back to top -->
+    <div class="back-to-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="top-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="headerwhitelogo").Value" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="/room/index">Rooms</a></li>
+                                <li class="ms-4"><a href="/gallery/index">Gallery</a></li>
+                                <li class="ms-4"><a href="/about/index">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="/contact/index">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user">
+                                    <a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                                        {
+                                            <ul class="m-0 p-0">
+                                                <li><a href="/account/edit"><i class="fa-solid fa-user"></i>@User.Identity.Name</a></li>
+                                                <li>
+                                                    <a asp-controller="account" asp-action="logout"><i class="fa-solid fa-user"></i>Logout</a>
+                                                </li>
+                                            </ul>
+
+                                        }
+                                        else
+                                        {
+                                            <ul class="m-0 p-0">
+                                                <li><a asp-controller="account" asp-action="login"><i class="fa-solid fa-user"></i>Login</a></li>
+                                                <li>
+                                                    <a asp-controller="account" asp-action="register"><i class="fa-solid fa-user"></i>Register</a>
+                                                </li>
+                                            </ul>
+
+
+                                        }
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation">
+                                    <a href="/room/index">
+                                        <i class="fa-regular fa-bookmark"></i>Reservations
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+    <!-- header end -->
+    @RenderBody()
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twitterurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twittericon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookicon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramicon").Value"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <script src="~/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/index/script.js"></script>
+    @RenderSection("Scripts",required:false)
+    <script src="//code.tidio.co/wo0iingaycgglbzdikloyf5tterdyp1o.js" async></script>
+</body>
+
+</html>

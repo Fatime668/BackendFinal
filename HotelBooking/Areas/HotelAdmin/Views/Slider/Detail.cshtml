@@ -1,0 +1,30 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detail</h1>
+
+
+<div>
+    <div>
+        <h4>
+            Id
+        </h4>
+        <p>
+            @Model.Id
+        </p>
+    </div>
+    
+     <div>
+        <h4>
+            Image
+        </h4>
+        <p><img src="~/assets/images/slider/@Model.ImageUrl" width="400px" />
+        </p>
+    </div>
+   <div>
+            <a class="btn btn-outline-primary" asp-controller="team" asp-action="index">Back to list</a>
+        </div>
+</div>

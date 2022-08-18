@@ -1,0 +1,23 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<div>
+    <div>
+        <h5>Id:</h5>
+        <p>@Model.Id</p>
+    </div>
+    <div class="mb-2">
+        <h5>Image:</h5>
+            <img src="~/assets/images/slider/@Model.ImageUrl" width="400px" />
+    </div>
+   
+    <form method="post">
+        <button type="submit" class="btn btn-lg btn-outline-danger">Delete</button>
+        <a type="submit" class="btn btn-lg btn-outline-dark" asp-controller="slider" asp-action="index">Back To List</a>
+    </form>
+</div>

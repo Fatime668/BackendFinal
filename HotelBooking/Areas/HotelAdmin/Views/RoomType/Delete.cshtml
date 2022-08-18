@@ -1,0 +1,23 @@
+﻿@model RoomType
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<div>
+    <div>
+        <h5>Id:</h5>
+        <p>@Model.Id</p>
+    </div>
+    <div>
+        <h5>Name:</h5>
+        <p>@Model.Name</p>
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-lg btn-outline-danger">Delete</button>
+        <button type="submit" class="btn btn-lg btn-outline-dark">Back To List</button>
+    </form>
+</div>

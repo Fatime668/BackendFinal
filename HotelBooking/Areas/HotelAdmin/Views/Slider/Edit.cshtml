@@ -1,0 +1,25 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-5">
+    <h1>Edit</h1>
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post" enctype="multipart/form-data" >
+    <div>
+        <label>Photo:</label>
+        <input asp-for="Photo" accept="image/*" class="input-group-prepend form-control-file" /><br />
+        <span class="text-danger" asp-validation-for="Photo"></span>
+    </div>
+    <div class="d-flex">
+        <div>
+            <button class="btn btn-outline-warning" type="submit">Edit</button>
+        </div>
+        <div style="margin-left:15px">
+            <a class="btn  btn-outline-primary" asp-controller="slider" asp-action="index">Back to list</a>
+        </div>
+    </div>
+</form>
+</div>

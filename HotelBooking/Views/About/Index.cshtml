@@ -1,0 +1,363 @@
+﻿@{
+    Layout = null;
+}
+@model AboutVM
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi – About Us</title>
+    <link rel="shortcut icon" href="~/assets/images/icon/icons8-palm-tree-48.png" type="image/x-icon">
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+        rel="stylesheet">
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- plugin css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+        integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/about/css/style.css">
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- back to top -->
+    <div class="back-to-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="top-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "headerwhitelogo").Value" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a class="active" href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user"><a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li><a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation"><a href="register.html"><i
+                                            class="fa-regular fa-bookmark"></i>Reservations</a></li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <!-- main start -->
+    <main>
+        <!-- intro start -->
+        <section id="intro">
+            <div class="bg-color"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="title">
+                            <span class="subtitle" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                                data-aos-anchor-placement="center-bottom">@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "aboutsubtitle").Value</span>
+                            <h1 data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                                data-aos-anchor-placement="center-bottom">@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "abouttitle").Value</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#about" class="scroll-to">
+                Scroll
+                <span class="scroll-line"></span>
+            </a>
+        </section>
+        <!-- intro end -->
+        <!-- panel start -->
+        <section id="panel">
+            <div class="bottom-panel">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="bottom-title">
+                                        <h5>Got a questions?</h5>
+                                        <span>@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "questionemail").Value</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="bottom-title">
+                                        <h5>For partners</h5>
+                                        <span>@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "aboutpartneremail").Value</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- panel end -->
+        <!-- about start -->
+        <section id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+                        <div class="title">
+                            <span data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                                data-aos-anchor-placement="center-bottom">OUR STORY</span>
+                            <h1>
+                                <span data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                                    data-aos-anchor-placement="center-bottom">A Brief History of Sochi Hotel.</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-7">
+                        <div class="description">
+                            <p data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                                data-aos-anchor-placement="center-bottom">
+                                The humid subtropical climate, high mountains, exotic vegetation, endless beaches,
+                                national parks, historic architecture, exciting attraction sites, art festivals and
+                                lively multicultural environment make Sochi a prominent resort destination.
+                            </p>
+                            <p data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                                data-aos-anchor-placement="center-bottom">Sochi has a lot to offer for anyone who loves
+                                nature, sports, history, sunny beach
+                                leisure and active adventures. There is too much to do and too many things to see in
+                                Sochi so you will never be bored.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme">
+                @foreach (Slider slider in Model.Sliders)
+                {
+                    <div class="item">
+                        <img src="~/assets/images/slider/@slider.ImageUrl" alt="">
+                    </div>
+                }
+            </div>
+        </section>
+        <!-- about end -->
+        <!-- approach start -->
+        <section id="approach">
+            <div class="container">
+                <div class="title">
+                    <span data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"
+                        data-aos-anchor-placement="center-bottom">WHAT DO WE OFFER</span>
+                    <h1>
+                        <span data-aos="fade-up" data-aos-duration="500" data-aos-delay="800"
+                            data-aos-anchor-placement="center-bottom">Our approach.</span>
+                    </h1>
+                </div>
+
+                <div class="row item-approach">
+                    @foreach (var item in Model.Approaches)
+                    {
+                        <div class="col-lg-12 approach">
+                            <div class="row">
+                                <span class="item">
+                                    <span class="num">
+                                        @item.Number
+                                    </span>
+                                </span>
+                                <div class="col-lg-6 d-flex justify-content-start">
+                                    <h3>@item.Title</h3>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                       @item.Description
+                                    </p>
+                                    <p>
+                                        @item.Text
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </section>
+        <!-- approach end -->
+        <!-- video start -->
+        <section id="video">
+            <div class="content">
+                <a href="#videostory" class="button more" id="videolink">
+                    <i class="fa-solid fa-play" aria-hidden="true"></i>
+                </a>
+                <div id="videostory" class="mfb-hide">
+                    <iframe width="100%" height="1000" src="@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "videolink").Value"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-note">
+                    <div class="title">Hotel Sochi</div>
+                    <span class="info">@layoutService.GetSetting().Result.FirstOrDefault(s => s.Key.Trim().ToLower() == "vieonote").Value</span>
+                </div>
+            </div>
+        </section>
+        <!-- video end -->
+        <!-- team start -->
+        <section id="team">
+            <div class="container">
+                <div class="title">
+                    <span>
+                        MEET TEAM
+                    </span>
+                    <h1>
+                        <span>Hotel staff.</span>
+                    </h1>
+                </div>
+                <div class="row">
+                   @foreach (var item in Model.Teams)
+                    {
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                            <div class="personItem">
+                                <div class="img">
+                                    <img src="~/assets/images/team/@item.Image" alt="">
+                                </div>
+                                <div class="person-detail">
+                                    <h4>@item.Name</h4>
+                                    <span>@item.Position</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </section>
+        <!-- team end -->
+        <!-- CTA start -->
+        <section id="cta">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="title text-center">
+                            <h2>Make room for adventure.</h2>
+                            <p>Book your room right now and start your amazing adventure full of discoveries and
+                                experiences with Sochi.</p>
+                            <a href="#">
+                                Reservations
+                                <i class="fa-solid fa-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA end -->
+    </main>
+    <!-- main end -->
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twitterurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="twittericon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="facebookicon").Value"></i></a></li>
+                            <li class="ms-4"><a href="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramurl").Value"><i class="@layoutService.GetSocial().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="instagramicon").Value"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- plugin js -->
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+        integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- script js -->
+    <script src="~/assets/js/about/script.js"></script>
+</body>
+
+</html>

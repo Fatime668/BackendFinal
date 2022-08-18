@@ -1,0 +1,141 @@
+﻿@model Room
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+<div class="my-5">
+    
+<h1>Edit</h1>
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post" enctype="multipart/form-data">
+     <div>
+        <label class="mb-3">Room title:</label><br />
+        <input asp-for="Title" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <label class="mb-3">Room price:</label><br />
+        <input asp-for="Price" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+    <div>
+        <label class="mb-3">Room Description:</label><br />
+        <input asp-for="Description" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <label class="mb-3">Beds:</label><br />
+        <input asp-for="NoOfBed" max="8" min="1" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="NoOfBed"></span>
+    </div>
+      <div>
+        <label class="mb-3">Baths:</label><br />
+        <input asp-for="NoOfBath" max="8" min="1" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="NoOfBath"></span>
+    </div>
+     <div>
+        <label class="mb-3">Room Size:</label><br />
+        <input asp-for="Size" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Size"></span>
+    </div>
+     <div>
+        <label class="mb-3">Loaction:</label><br />
+        <input asp-for="Location" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Location"></span>
+    </div>
+     <div>
+        <label class="mb-3">Room Status:</label><br />
+        <input asp-for="Status" type="checkbox"  /><br />
+        <span class="text-danger" asp-validation-for="Status"></span>
+    </div>
+     <div>
+        <label class="mb-3">IsFeatured:</label><br />
+        <input asp-for="IsFeatured" type="checkbox"  /><br />
+        <span class="text-danger" asp-validation-for="IsFeatured"></span>
+    </div>
+     <div>
+        <label class="mb-3">IsPopular:</label><br />
+        <input asp-for="IsPopular" type="checkbox"  /><br />
+        <span class="text-danger" asp-validation-for="IsPopular"></span>
+    </div>
+    <div>
+     <label class="mb-3">RoomTypes:</label><br />
+        <select class="form-control" asp-for="RoomTypeId" asp-items="@(new SelectList(ViewBag.RoomTypes,"Id","Name"))"></select>
+        <span class="text-danger" asp-validation-for="RoomTypeId"></span>
+    </div>
+    <div>
+        <label class="mb-3">Plant Categories:</label><br />
+        <select class="form-control" asp-for="AmenityIds">
+            @foreach (Amenity amenity in ViewBag.Amenities)
+            {
+                if (Model.RoomAmentiys.FirstOrDefault(pc => pc.AmenityId == amenity.Id) != null)
+                {
+                    <option value="@amenity.Id" selected>@amenity.Name</option>
+                }
+                else
+                {
+                    <option value="@amenity.Id">@amenity.Name</option>
+                }
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="AmenityIds"></span>
+    </div>
+  
+    <div>
+        <label class="mb-3">Room main image:</label><br />
+        <input asp-for="MainImage" class="input-group-prepend form-control-file" accept="image/*" /><br />
+        <span class="text-danger" asp-validation-for="MainImage"></span>
+    </div>
+    <div>
+        <label class="mb-3">Room another images:</label><br />
+        <input asp-for="AnotherImages" class="input-group-prepend form-control-file" accept="image/*" /><br />
+        <span class="text-danger" asp-validation-for="AnotherImages"></span>
+    </div>
+    <div>
+        <span class="mb-3">Room main image:</span><br />
+        <div class="d-flex">
+            <div class="col-lg-2" style="position:relative">
+                <i class="fa-solid fa-ban closeBtn" style="position:absolute;top:10px;right:5px;color:red;font-size:20px"></i>
+                <img style="width: 100%; height:150px" src="~/assets/images/rooms/@Model.RoomPictures.FirstOrDefault(i=>i.IsMain == true)?.ImagePath" />
+                <input type="hidden" value="@Model.RoomPictures.FirstOrDefault(i=>i.IsMain == true)?.Id" name="ImageIds" />
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <span>Another images</span><br />
+        <div class="d-flex">
+            @foreach (var image in Model.RoomPictures.Where(i => i.IsMain == false))
+            {
+                <div class="col-lg-2" style="position:relative">
+                    <i class="fa-solid fa-ban closeBtn" style="position:absolute;top:10px;right:5px;color:red;font-size:20px"></i>
+                    <img style="width: 100%; height:150px" src="~/assets/images/rooms/@image.ImagePath" />
+                    <input type="hidden" value="@image.Id" name="ImageIds" />
+                </div>
+            }
+        </div>
+    </div>
+   <div class="d-flex my-3">
+        <div >
+        <button type="submit" class="btn btn-warning">Edit room</button>
+    </div>
+    <div style="margin-left:10px">
+        <a asp-controller="room" asp-action="index" class="btn btn-primary">Back To List</a>
+    </div>
+</div>
+</form>
+
+</div>
+
+@section Scripts{
+    <script>
+
+        $(".closeBtn").click(function () {
+            this.parentNode.remove();
+        })
+        $(".closeBtn").click(function () {
+            this.parentNode.remove();
+        })
+    </script>
+}
+

@@ -1,0 +1,244 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model EditVM
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi-Register Page</title>
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" href="~/assets/images/icon/user (1).png" type="image/x-icon">
+    <!-- plugins link -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/register/css/style.css">
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/logo-black.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user">
+                                    <a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li>
+                                                <a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation">
+                                    <a href="#">
+                                        <i class="fa-regular fa-bookmark"></i>Reservations
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <main>
+        <section id="registration">
+            <div class="bg-color"></div>
+            <div class="title text-center">
+                <h2>REGISTER PAGE</h2>
+                <ul class="d-flex justify-content-center align-items-center m-0 p-0">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="ms-5"><a class="active" href="register.html">Register</a></li>
+                </ul>
+            </div>
+        </section>
+        <section id="register">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                        <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="col-lg-6">
+                        <form method="post">
+                            <div class="login-form">
+                                <h4 class="login-title">Register</h4>
+                                <div class="row">
+                                    <div class="col-md-6 col-12 name">
+                                        <div class="input-field">
+                                            <label style="position:absolute; top:-25px">First Name</label>
+                                            <input type="tel" placeholder="First Name" asp-for="firstname">
+                                            <span class="text-danger" asp-validation-for="firstname"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12 name">
+                                        <div class="input-field">
+                                            <label style="position:absolute; top:-25px">Last Name</label>
+                                            <input placeholder="Last Name" asp-for="lastname">
+                                            <span class="text-danger" asp-validation-for="lastname"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-field">
+                                            <label  style="position:absolute; top:-25px">Username</label>
+                                            <i class="fa-solid fa-user"></i>
+                                            <input  placeholder="Username" asp-for="username">
+                                            <span class="text-danger" asp-validation-for="username"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-field form-group">
+                                            <label style="position:absolute; top:-25px">Phone Number</label>
+                                            <i class="fa-solid fa-phone"></i>
+                                            <input placeholder="Phone Number" asp-for="phonenumber">
+                                            <span class="text-danger" asp-validation-for="phonenumber"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-field">
+                                            <label style="position:absolute; top:-25px">Email Address*</label>
+                                            <i class="fa-solid fa-envelope"></i>
+                                            <input readonly  placeholder="Email Address" asp-for="email">
+                                            <span class="text-danger" asp-validation-for="email"></span>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-md-12">
+                                        <div class="input-field">
+                                            <label style="position:absolute; top:-25px">Current Password</label>
+                                            <i class="fa-solid fa-lock"></i>
+                                            <input type="password" placeholder="CurrentPassword" id="myInput1" asp-for="currentpassword">
+                                            <span class="text-danger" asp-validation-for="currentpassword"></span>
+                                            <span class="showhide" onclick="myFunction1()">
+                                                <i id="hide1" class="fa-solid fa-eye"></i>
+                                                <i id="hide2" class="fa-solid fa-eye-slash"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-field">
+                                            <label style="position:absolute; top:-25px">New Password</label>
+                                            <i class="fa-solid fa-lock"></i>
+                                            <input type="password" placeholder="New Password" id="myInput2" asp-for="password">
+                                            <span class="text-danger" asp-validation-for="password"></span>
+                                            <span class="showhide" onclick="myFunction2()">
+                                                <i id="hide3" class="fa-solid fa-eye"></i>
+                                                <i id="hide4" class="fa-solid fa-eye-slash"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="input-field">
+                                            <label style="position:absolute; top:-25px">Confirm Password</label>
+                                            <i class="fa-solid fa-lock"></i>
+                                            <input type="password" placeholder="Confirm Password" id="myInput2" asp-for="confirmpassword">
+                                            <span class="text-danger" asp-validation-for="confirmpassword"></span>
+                                            <span class="showhide" onclick="myFunction2()">
+                                                <i id="hide3" class="fa-solid fa-eye"></i>
+                                                <i id="hide4" class="fa-solid fa-eye-slash"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex align-items-center">
+                                        <button class="btn  lg-size " type="submit">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="#"><i class="fa-brands fa-facebook-square"></i></a></li>
+                            <li class="ms-4"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li class="ms-4"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <script src="~/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/register/script.js"></script>
+</body>
+
+</html>

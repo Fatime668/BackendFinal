@@ -1,0 +1,93 @@
+﻿@model Room
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-5">
+    <h1>Create Room</h1>
+
+<div asp-validation-summary="ModelOnly" class="alert alert-light-primary border-0 mb-4" role="alert">
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg> ... </svg></button>
+    <strong>Primary!</strong> Lorem Ipsum is simply dummy text of the printing.</button>
+</div>
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <label class="mb-3">Room title:</label><br />
+        <input asp-for="Title" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <label class="mb-3">Room price:</label><br />
+        <input asp-for="Price" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+    <div>
+        <label class="mb-3">Room Description:</label><br />
+        <input asp-for="Description" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <label class="mb-3">Beds:</label><br />
+        <input asp-for="NoOfBed" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="NoOfBed"></span>
+    </div>
+      <div>
+        <label class="mb-3">Baths:</label><br />
+        <input asp-for="NoOfBath" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="NoOfBath"></span>
+    </div>
+     <div>
+        <label class="mb-3">Room Size:</label><br />
+        <input asp-for="Size" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Size"></span>
+    </div>
+     <div>
+        <label class="mb-3">Loaction:</label><br />
+        <input asp-for="Location" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Location"></span>
+    </div>
+     <div>
+        <label class="mb-3">Room Status:</label><br />
+        <input asp-for="Status" type="checkbox"  /><br />
+        <span class="text-danger" asp-validation-for="Status"></span>
+    </div>
+     <div>
+        <label class="mb-3">IsFeatured:</label><br />
+        <input asp-for="IsFeatured" type="checkbox"  /><br />
+        <span class="text-danger" asp-validation-for="IsFeatured"></span>
+    </div>
+     <div>
+        <label class="mb-3">IsPopular:</label><br />
+        <input asp-for="IsPopular" type="checkbox"  /><br />
+        <span class="text-danger" asp-validation-for="IsPopular"></span>
+    </div>
+    <div>
+        <label class="mb-3">RoomTypes:</label><br />
+        <select class="form-control" asp-for="RoomTypeId" asp-items="@(new SelectList(ViewBag.RoomTypes,"Id","Name"))"></select>
+        <span class="text-danger" asp-validation-for="RoomTypeId"></span>
+    </div>
+    
+  <div>
+        <label class="mb-3">Amenities:</label><br />
+        <select class="form-control" asp-for="AmenityIds" asp-items="@(new SelectList(ViewBag.Amenities,"Id","Name","ImageUrl"))"></select>
+        <span class="text-danger" asp-validation-for="AmenityIds"></span>
+    </div>
+  
+    <div>
+        <label class="mb-3">Plant main image:</label><br />
+        <input asp-for="MainImage" class="input-group-prepend form-control-file" accept="image/*" /><br />
+        <span class="text-danger" asp-validation-for="MainImage"></span>
+    </div>
+    <div>
+        <label class="mb-3">Plant main image:</label><br />
+        <input asp-for="AnotherImages" class="input-group-prepend form-control-file" accept="image/*" /><br />
+        <span class="text-danger" asp-validation-for="AnotherImages"></span>
+    </div>
+   
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Create room</button>
+    </div>
+</form>
+</div>

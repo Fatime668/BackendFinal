@@ -1,0 +1,410 @@
+﻿@using HotelBooking.Helper
+@model RoomFilterVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sochi – Rooms</title>
+    <link rel="shortcut icon" href="~/assets/images/icon/icons8-palm-tree-48.png" type="image/x-icon">
+    <!-- fontawesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&family=Krub:wght@300;400&family=Lobster&family=Montserrat:ital,wght@0,200;0,300;0,500;1,200;1,300;1,400&family=Nunito+Sans:wght@300;400&family=Oleo+Script:wght@400;700&family=Playfair+Display:ital@0;1&family=Poppins:wght@200;300;400&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@200;300;400&display=swap"
+          rel="stylesheet">
+    <!-- datetime plugin -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/assets/bootstrap/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/assets/bootstrap/css/jquery-ui.theme.min.css">
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- css link -->
+    <link rel="stylesheet" href="~/assets/css/room/css/style.css">
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+            .pagination a {
+                margin: 0 4.8px;
+                padding: 10px;
+                font-size: 16px;
+                font-family: "Roboto", sans-serif;
+                color: #72809D;
+            }
+
+
+                .pagination a:hover {
+                    color: #32445D;
+                }
+
+
+                .pagination a.active {
+                    color: #C9A96A;
+                }
+
+
+                .pagination a.prev {
+                    color: #a9acb5;
+                    font-size: 14px;
+                    border: 1px solid #c0c0c0;
+                    border-radius: 50%;
+                    padding: 10px 15px;
+                    transition: 0.3s ease-in;
+                }
+
+
+                .pagination a.next {
+                    font-size: 14px;
+                    border: 1px solid #c0c0c0;
+                    border-radius: 50%;
+                    padding: 10px 15px;
+                    color: #a9acb5;
+                    transition: 0.3s ease-in;
+                }
+
+
+                .pagination a:hover.prev, .pagination a:hover.next {
+                    box-shadow: 0px 0px 20px 2px rgba(104, 118, 135, 0.41);
+                }
+
+
+            .pagination span {
+                padding: 10px;
+                margin: 0 4.8px;
+            }
+
+
+        .pointerEvent {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- preloader start -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- preloader end -->
+    <!-- back to top -->
+    <div class="back-to-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="top-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top -->
+    <!-- header start -->
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-3">
+                        <div class="nav-logo">
+                            <a href="index.html">
+                                <img src="~/assets/images/logo/logo-black.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="nav-menu">
+                            <div class="close">
+                                <input type="checkbox" id="check">
+                                <label for="check" class="checkbtn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
+                            </div>
+                            <ul class="m-0 p-0">
+                                <li><a class="active" href="room.html">Rooms</a></li>
+                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
+                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li class="ms-4"><a href="blog.html">Blog</a></li>
+                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="rezerv">
+                            <ul class="d-flex m-0 p-0 justify-content-end">
+                                <li class="user">
+                                    <a href="#"><i class="fa-solid fa-user-large"></i></a>
+                                    <div class="dropdown">
+                                        <ul class="m-0 p-0">
+                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
+                                            <li>
+                                                <a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="ms-3 rezervation">
+                                    <a href="#">
+                                        <i class="fa-regular fa-bookmark"></i>Reservations
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="bar d-none justify-content-end align-items-center">
+                                <a href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+    <!-- main start -->
+    <main>
+        <!-- filters start -->
+        <section id="filter">
+            <div class="sub-header">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="roomtype-select col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                            <select class="roomtype w-100 select-form form-control">
+                                <option selected>Select the room type </option>
+                                <option value="@Url.Action("Index","Room")">All Rooms</option>
+                                <option value="@Url.Action("Index","Room",new {roomTypeId = Model.RoomTypes.FirstOrDefault(r=>r.Id==1).Id,sortBy = Model.SortBy})">Comfort Room</option>
+                                <option value="@Url.Action("Index","Room",new {roomTypeId = Model.RoomTypes.FirstOrDefault(r=>r.Id==2).Id,sortBy = Model.SortBy})">Luxe Room</option>
+                                <option value="@Url.Action("Index","Room",new {roomTypeId = Model.RoomTypes.FirstOrDefault(r=>r.Id==3).Id,sortBy = Model.SortBy})">Grand Delux Room</option>
+                                <option value="@Url.Action("Index","Room",new {roomTypeId = Model.RoomTypes.FirstOrDefault(r=>r.Id==4).Id,sortBy = Model.SortBy})">Standard Room</option>
+                                <option value="@Url.Action("Index","Room",new {roomTypeId = Model.RoomTypes.FirstOrDefault(r=>r.Id==5).Id,sortBy = Model.SortBy})">Apartments</option>
+                            </select>
+                        </div>
+                        <div class="sortby-select col-12 col-sm-12 col-md-12 col-lg-6  col-xl-4">
+                            <select class="sortby w-100 select-form form-control">
+                                <option selected value="@Url.Action("Index","Room",new {sortBy = Convert.ToInt32(SortByEnum.AToZ),roomTypeId = Model.RoomTypeId})">A To Z</option>
+                                <option selected="@(Model.SortBy == Convert.ToInt32(SortByEnum.PriceHighToLow) )" value="@Url.Action("Index","Room",new {sortBy = Convert.ToInt32(SortByEnum.PriceHighToLow),roomTypeId = Model.RoomTypeId})">High To Low</option>
+                                <option selected="@(Model.SortBy == Convert.ToInt32(SortByEnum.PriceLowToHigh) )" value="@Url.Action("Index","Room",new {sortBy = Convert.ToInt32(SortByEnum.PriceLowToHigh),roomTypeId = Model.RoomTypeId})">Low To High</option>
+                                <option selected="@(Model.SortBy == Convert.ToInt32(SortByEnum.ZToA) )" value="@Url.Action("Index","Room",new {sortBy = Convert.ToInt32(SortByEnum.ZToA),roomTypeId = Model.RoomTypeId})">Z To A</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                            <div class="price">
+                                <div class="dropdown">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ui-slider">
+                                                <div id="slider-range"></div>
+                                                <p class="mb-0 text-center">
+                                                    <input type="text" id="amount" readonly>
+
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- filters end -->
+        <!-- room start -->
+        <section id="room">
+            <div class="container">
+                <div class="heading">
+                    <h1 class="title">
+                        <span>Rooms</span>
+                        <span> Suites.</span>
+                    </h1>
+                </div>
+                <div class="row">
+                    @if (Model != null && Model.Rooms != null && Model.Rooms.Count > 0 && Model.Rooms.Count <= 259)
+                    {
+                        @foreach (var room in Model.Rooms)
+                        {
+                            if (room.IsFeatured == false)
+                            {
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                                    <div class="item">
+                                        <div class="img">
+                                            <a href="/room/details/@room.Id">
+                                                <div class="bg-color"></div>
+                                                <img src="~/assets/images/roomItem/@room.RoomPictures.FirstOrDefault(r=>r.IsMain==true).ImagePath" alt="">
+                                            </a>
+                                            <div class="room-detail">
+                                                <h4>@room.Title</h4>
+                                                <div class="price">
+                                                    $@room.Price
+                                                    <span>night</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="extended">
+                                                <div class="item-extended">
+                                                    <i class="fa-solid fa-location-dot"></i>
+                                                    @room.Location
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="item-extended">
+                                                        <i class="fa-solid fa-maximize"></i>
+                                                        @room.Size sq.ft.
+                                                    </div>
+                                                    <div class="item-extended">
+                                                        <i class="fa-solid fa-bed"></i>
+                                                        @room.NoOfBed Bedrooms
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <p class="alert alert-danger">Room not available!</p>
+                    }
+
+                </div>
+                <div class="pagination">
+                    <a asp-controller="room" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)" class="prev @(ViewBag.CurrentPage == 1 ? "active pointerEvent"  : "") "><i class="fa-solid fa-arrow-left"></i></a>
+                    <div class="d-flex">
+                        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+
+                        {
+                            <a class="page @(ViewBag.CurrentPage == i ?  "active pointerEvent" : "") " asp-controller="room" asp-action="index" asp-route-page="@i">@i</a>
+                        }
+
+                    </div>
+                    <a asp-controller="room" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)" class="next @(ViewBag.CurrentPage == ViewBag.TotalPage ?  "active pointerEvent" : "") "><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- room end -->
+    </main>
+    <!-- main end -->
+    <!-- footer start -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="footer-left">
+                        <ul class="d-flex justify-content-start m-0 p-0">
+                            <li><a href="#">© 2019 Sochi Hotel</a></li>
+                            <li class="ms-4"><a href="#">Terms & Conditions</a></li>
+                            <li class="ms-4"><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="footer-icon">
+                        <ul class="d-flex justify-content-end p-0 m-0">
+                            <li><a href="#"><i class="fa-brands fa-facebook-square"></i></a></li>
+                            <li class="ms-4"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li class="ms-4"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- plugin js -->
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="~/assets/bootstrap/js/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- script js -->
+    <script src="~/assets/js/room/script.js"></script>
+    @{
+        int priceRangeMin = 40;
+        int priceRangeMax = Model.MaxAllPrice.Value;
+        if (Model.MinPrice != null && Model.MinPrice != 0)
+        {
+            priceRangeMin = 40;
+        }
+        if (priceRangeMax == 40)
+        {
+            priceRangeMax = 41;
+        }
+
+        var priceStartFrom = Model.MinPrice.HasValue ? Model.MinPrice.Value : priceRangeMin;
+        var priceStartTo = Model.MaxPrice.HasValue && Model.MaxPrice.Value <= priceRangeMax ? Model.MaxPrice.Value : priceRangeMax;
+    }
+    <input type="hidden" value="@(Model.SortBy)" id="SortById" />
+    <input type="hidden" value="@(Model.RoomTypeId)" id="RoomTypeId" />
+    <script>
+        $(".roomtype-select .roomtype").on("change", function() {
+            let url = $(this).val();
+            window.location.href = url;
+        })
+        $(".sortby-select .sortby").on("change", function() {
+            let url = $(this).val();
+            window.location.href = url;
+        })
+
+        let clearPriceVal;
+        $(function() {
+            $("#slider-range").slider({
+                range: true,
+                min: @(priceRangeMin),
+                max: @(priceRangeMax),
+                values: [@(priceStartFrom), @(priceStartTo) ],
+                slide: function(event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+
+                    clearInterval(clearPriceVal);
+                    clearPriceVal = setTimeout(function() {
+                        RoomPriceFilter(ui);
+                    }, 1000);
+
+
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+                " - $" + $("#slider-range").slider("values", 1));
+        });
+
+
+        function RoomPriceFilter(ui) {
+            let sortBy = $("#SortById").val();
+            let roomtypeId = $("#RoomTypeId").val();
+            window.location.href = `/room?minPrice=${ui.values[0]}&maxPrice=${ui.values[1]}&sortBy=${sortBy}&roomTypeId=${roomtypeId}`;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+﻿@model Amenity
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detail</h1>
+
+
+<div>
+    <div>
+        <h4>
+            Id
+        </h4>
+        <p>
+            @Model.Id
+        </p>
+    </div>
+    <div>
+        <h4>
+            Name
+        </h4>
+        <p>
+            @Model.Name
+        </p>
+    </div>
+     <div>
+        <h4>
+            Image
+        </h4>
+        <p>
+            <img width="150px" height="150px" src="~/assets/images/amenity/@Model.ImageUrl" />
+        </p>
+    </div>
+   <div>
+            <a class="btn btn-outline-primary" asp-controller="amenity" asp-action="index">Back to list</a>
+        </div>
+</div>
