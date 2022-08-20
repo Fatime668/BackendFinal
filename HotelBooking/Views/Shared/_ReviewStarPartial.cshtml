@@ -40,13 +40,16 @@
                                 <p class="mt-3 mb-4 pb-2">
                                     @review.Message
                                 </p>
-                                <div class="small d-flex justify-content-start">
+                                <div class="small d-flex justify-content-between">
                                     <div class="icons" style="color:#FFC107;">
                                         @for (int i = 0; i < review.Star; i++)
                                         {
                                             <i class="fa-solid fa-star"></i>
                                         }
 
+                                    </div>
+                                    <div>
+                                         <a style="cursor:pointer;color:red;" data-id="@review.Id" data-bid="@review.RoomId" class="deletecommentprod"><i class="fa-regular fa-trash-can"></i></a>
                                     </div>
                                 </div>
                             </div>
