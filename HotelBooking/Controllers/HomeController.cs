@@ -35,7 +35,8 @@ namespace HotelBooking.Controllers
             {
                 Rooms = await _roomService.GetRooms(),
                 Testimonials = await _testimonialService.GetTestimonials(),
-                Galleries = await _context.Galleries.ToListAsync()
+                Galleries = await _context.Galleries.ToListAsync(),
+                Comments = await _context.Comments.ToListAsync()
 
         };
             return View(model);

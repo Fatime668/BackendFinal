@@ -4,6 +4,7 @@ using HotelBooking.Extensions;
 using HotelBooking.Utilities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -118,5 +119,9 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        
+        
+
     }
 }

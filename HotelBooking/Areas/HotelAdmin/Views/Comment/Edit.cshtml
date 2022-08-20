@@ -1,0 +1,58 @@
+﻿@model Comment
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-5">
+    <h1>Edit</h1>
+
+<div class="my-5">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<form method="post" >
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" re class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input asp-for="Email" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label>Message:</label>
+        <input asp-for="Message" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Message"></span>
+    </div>
+    <div>
+        <label>Create Date:</label>
+        <input asp-for="CreatedDate" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="CreatedDate"></span>
+    </div>
+     <div>
+        <label>Rating:</label>
+        <input asp-for="Star" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="Star"></span>
+    </div>
+     <div>
+        <label>RoomId:</label>
+        <input asp-for="RoomId" class="form-control" /><br />
+        <span class="text-danger" asp-validation-for="RoomId"></span>
+    </div>
+     <div>
+        <label>Status:</label>
+        <input asp-for="Status"  /><br />
+        <span class="text-danger" asp-validation-for="Status"></span>
+    </div>
+    <div class="d-flex">
+        <div>
+            <button class="btn btn-outline-warning" type="submit">Edit</button>
+        </div>
+        <div style="margin-left:15px">
+            <button class="btn btn-outline-primary" asp-controller="comment" asp-action="index">Back to list</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>

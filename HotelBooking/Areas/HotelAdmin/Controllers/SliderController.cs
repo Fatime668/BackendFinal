@@ -40,13 +40,13 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 if (slider.Photo.IsOkay(1))
                 {
                     slider.ImageUrl = await slider.Photo.FileCreate(_env.WebRootPath, @"assets\images\slider");
-                    await _context.AddAsync(slider);
+                    await _context.Sliders.AddAsync(slider);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    ModelState.AddModelError("Photo", "Zehmet olmasa 1 mb-n altinda sekil daxil edin");
+                    ModelState.AddModelError("Photo", "Please choose image file and max 1MB");
                     return View();
                 }
             }

@@ -17,7 +17,6 @@ namespace Entities.Concrete
         public byte NoOfBed { get; set; }
         [Required]
         public byte NoOfBath { get; set; }
-        [Required]
         public string Location { get; set; }
         [Required]
         public double Size { get; set; }

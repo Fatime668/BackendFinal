@@ -30,7 +30,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         public async Task<IActionResult> Create(Approach approach)
         {
             if (!ModelState.IsValid) return View();
-            await _context.AddAsync(approach);
+            await _context.Approaches.AddAsync(approach);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

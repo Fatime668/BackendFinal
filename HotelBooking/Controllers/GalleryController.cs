@@ -1,7 +1,10 @@
 ﻿using DataAccess.Data;
+using Entities.Concrete;
 using HotelBooking.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Services;
+using System.Collections.Generic;
 
 namespace HotelBooking.Controllers
 {

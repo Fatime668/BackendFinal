@@ -29,6 +29,12 @@
     <Compile Remove="Migrations\20220811191220_createComment.Designer.cs" />
     <Compile Remove="Migrations\20220818121126_requiredcolumn.cs" />
     <Compile Remove="Migrations\20220818121126_requiredcolumn.Designer.cs" />
+    <Compile Remove="Migrations\20220819063750_CommentStatus.cs" />
+    <Compile Remove="Migrations\20220819063750_CommentStatus.Designer.cs" />
+    <Compile Remove="Migrations\20220819063949_CommentStatus.cs" />
+    <Compile Remove="Migrations\20220819063949_CommentStatus.Designer.cs" />
+    <Compile Remove="Migrations\20220819064156_CommentStatus.cs" />
+    <Compile Remove="Migrations\20220819064156_CommentStatus.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

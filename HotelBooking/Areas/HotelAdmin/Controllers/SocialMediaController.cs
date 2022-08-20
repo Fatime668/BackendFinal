@@ -31,7 +31,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            await _context.AddAsync(socialMedia);
+            await _context.SocialMedias.AddAsync(socialMedia);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

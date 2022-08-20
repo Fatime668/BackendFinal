@@ -201,7 +201,6 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Raz
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Team\Edit.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Team\Detail.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Team\Delete.cshtml.g.cs
-C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AddCommentForRoomPartial.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Room\Create.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Room\Edit.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Room\Detail.cshtml.g.cs
@@ -230,3 +229,12 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\Sys
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Gallery\Index.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Gallery\Create.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Gallery\Edit.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Gallery\Detail.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Gallery\Delete.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Comment\Index.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Comment\Edit.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Comment\Delete.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ReviewStarPartial.cshtml.g.cs

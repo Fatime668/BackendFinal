@@ -1,0 +1,41 @@
+﻿@model Comment
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+<h1>Delete</h1>
+
+<div>
+    <div>
+        <h5>Id:</h5>
+        <p>@Model.Id</p>
+    </div>
+    <div>
+        <h5>Name:</h5>
+        <p>@Model.Name</p>
+    </div>
+     <div>
+        <h5>Email:</h5>
+        <p>@Model.Email</p>
+    </div>
+     <div>
+        <h5>Message:</h5>
+        <p>@Model.Message</p>
+    </div>
+     <div>
+        <h5>Create Date:</h5>
+        <p>@Model.CreatedDate</p>
+    </div>
+     <div>
+        <h5>Star:</h5>
+        <p>@Model.Star</p>
+    </div>
+    <div>
+        <h5>RoomId:</h5>
+        <p>@Model.RoomId</p>
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-lg btn-outline-danger">Delete</button>
+        <a asp-controller="comment" asp-action="index" class="btn btn-lg btn-outline-dark">Back To List</a>
+    </form>
+</div>

@@ -14,11 +14,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="~/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/admin/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="~/admin/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
     <link href="~/admin/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     @RenderSection("Links",required:false)
 
@@ -59,78 +61,16 @@
             <ul class="navbar-item flex-row ml-md-auto">
 
                 <li class="nav-item dropdown language-dropdown">
-                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="~/admin/assets/img/ca.png" class="flag-width" alt="flag">
+                    <a  asp-controller="comment" asp-action="index" title="comments" class="nav-link  >
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                     </a>
-                    <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="~/admin/assets/img/de.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;German</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="~/admin/assets/img/jp.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Japanese</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="~/admin/assets/img/fr.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;French</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="~/admin/assets/img/ca.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
-                    </div>
+                   
                 </li>
 
                 <li class="nav-item dropdown message-dropdown">
-                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="messageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a asp-controller="contact" asp-action="index" class="nav-link dropdown-toggle" title="contact messages"  aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     </a>
-                    <div class="dropdown-menu position-absolute" aria-labelledby="messageDropdown">
-                        <div class="">
-                            <a class="dropdown-item">
-                                <div class="">
-
-                                    <div class="media">
-                                        <div class="user-img">
-                                            <div class="avatar avatar-xl">
-                                                <span class="avatar-title rounded-circle">KY</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="">
-                                                <h5 class="usr-name">Kara Young</h5>
-                                                <p class="msg-title">ACCOUNT UPDATE</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="">
-                                    <div class="media">
-                                        <div class="user-img">
-                                            <img src="~/admin/assets/img/profile-15.jpg" class="img-fluid mr-2" alt="avatar">
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="">
-                                                <h5 class="usr-name">Daisy Anderson</h5>
-                                                <p class="msg-title">ACCOUNT UPDATE</p>
-                                            </div>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="">
-
-                                    <div class="media">
-                                        <div class="user-img">
-                                            <div class="avatar avatar-xl">
-                                                <span class="avatar-title rounded-circle">OG</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="">
-                                                <h5 class="usr-name">Oscar Garner</h5>
-                                                <p class="msg-title">ACCOUNT UPDATE</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </a>
-                        </div>
-                    </div>
                 </li>
 
                 <li class="nav-item dropdown notification-dropdown">
@@ -289,59 +229,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li class="menu">
-                        <a href="#app" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-                                <span>Apps</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled" id="app" data-parent="#accordionExample">
-                            <li>
-                                <a href="apps_chat.html"> Chat </a>
-                            </li>
-                            <li>
-                                <a href="apps_mailbox.html"> Mailbox  </a>
-                            </li>
-                            <li>
-                                <a href="apps_todoList.html"> Todo List </a>
-                            </li>                            
-                            <li>
-                                <a href="apps_notes.html"> Notes </a>
-                            </li>
-                            <li>
-                                <a href="apps_scrumboard.html">Scrumboard</a>
-                            </li>
-                            <li>
-                                <a href="apps_contacts.html"> Contacts </a>
-                            </li>
-                            <li>
-                                <a asp-controller="contact" asp-action="index" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Invoice <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
-                                <ul class="collapse list-unstyled sub-submenu" id="appInvoice" data-parent="#app"> 
-                                    <li>
-                                        <a href="apps_invoice-list.html"> List </a>
-                                    </li>
-                                    <li>
-                                        <a href="apps_invoice-preview.html"> Preview </a>
-                                    </li>
-                                    <li>
-                                        <a href="apps_invoice-add.html"> Add </a>
-                                    </li>
-                                    <li>
-                                        <a href="apps_invoice-edit.html"> Edit </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="apps_calendar.html"> Calendar </a>
-                            </li>
-                        </ul>
-                    </li>
-
                     <li class="menu">
                         <a href="#components" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -379,6 +266,12 @@
                             </li>
                             <li>
                                 <a asp-controller="category" asp-action="index"> Categories </a>
+                            </li>
+                            <li>
+                                <a asp-controller="gallery" asp-action="index"> Galleries </a>
+                            </li>
+                             <li>
+                                <a asp-controller="comment" asp-action="index"> Comments </a>
                             </li>
                            
                         </ul>
@@ -490,6 +383,7 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="~/admin/plugins/apex/apexcharts.min.js"></script>
     <script src="~/admin/assets/js/dashboard/dash_1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     @RenderSection("Scripts",required:false)
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 

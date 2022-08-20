@@ -8,10 +8,10 @@ namespace Entities.Concrete
 {
     public class Booking : BaseEntity
     {
-        [Required,DataType(DataType.DateTime)]
+        [Required,DataType(DataType.Date)]
         public DateTime ArrivalDate { get; set; }
 
-        [Required, DataType(DataType.DateTime)]
+        [Required, DataType(DataType.Date)]
         public DateTime DepartureDate { get; set; }
         [Required]
         public byte Adults { get; set; }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+//using X.PagedList;
 
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
@@ -22,11 +23,12 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _context = context;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
             List<Room> rooms = await _context.Rooms.Include(r => r.RoomPictures)
                 .ToListAsync();
             return View(rooms);
+            //.ToPagedList(page, 5)
         }
         public async Task<IActionResult> Create()
         {

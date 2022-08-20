@@ -42,8 +42,10 @@
         }
 
         .product-review-stars {
-            padding: 20px 50px 20px 20px;
-            width: 335px !important;
+            /*padding: 20px 50px 20px 20px;*/
+            display: flex;
+            width: 0% !important;
+            margin-left: 25%;
         }
 
             .product-review-stars label {
@@ -78,7 +80,7 @@
         .product-review-stars {
             unicode-bidi: bidi-override;
             direction: rtl;
-            width: 335px !important;
+            /*width: 335px !important;*/
         }
 
             .product-review-stars label {
@@ -158,9 +160,9 @@
             }
 
         .StarRate {
-            color: #cfa86e;
+            color: #32445D;
             text-decoration: none;
-            transition: 0.3s ease all;
+            transition: .3s ease ;
             background: transparent;
             z-index: 1;
             font-size: 18px;
@@ -172,40 +174,17 @@
             display: inline-block;
             text-align: center;
             padding: 10px 35px;
-            border: 2px solid #cfa86e;
+            border: 2px solid #32445D;
             border-radius: 0;
             position: relative;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
             outline: none;
             margin-bottom: 50px;
             margin-left: 74px;
         }
-
-            .StarRate::before {
-                transition: 0.5s all ease;
-                position: absolute;
-                top: 0;
-                left: 50%;
-                right: 50%;
-                bottom: 0;
-                opacity: 0;
-                content: "";
-                background-color: #cfa86e;
-                z-index: -2;
-                box-sizing: border-box;
-            }
-
             .StarRate:hover {
-                color: #FFF;
-                background: transparent;
+                color: #fff;
+                background: #32445D;
             }
-
-                .StarRate:hover::before {
-                    transition: 0.5s all ease;
-                    left: 0;
-                    right: 0;
-                    opacity: 1;
-                }
     </style>
 
 </head>
@@ -236,7 +215,7 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-3">
                         <div class="nav-logo">
-                            <a href="index.html">
+                            <a href="/home/index">
                                 <img src="~/assets/images/logo/@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="headerwhitelogo").Value" alt="">
                             </a>
                         </div>
@@ -254,11 +233,11 @@
                                 </label>
                             </div>
                             <ul class="m-0 p-0">
-                                <li><a href="room.html">Rooms</a></li>
-                                <li class="ms-4"><a href="gallery.html">Gallery</a></li>
-                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li><a href="/room/index">Rooms</a></li>
+                                <li class="ms-4"><a href="/gallery/index">Gallery</a></li>
+                                <li class="ms-4"><a href="/about/index">About Us</a></li>
                                 <li class="ms-4"><a href="blog.html">Blog</a></li>
-                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                                <li class="ms-4"><a href="/contact/index">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -268,16 +247,31 @@
                                 <li class="user">
                                     <a href="#"><i class="fa-solid fa-user-large"></i></a>
                                     <div class="dropdown">
-                                        <ul class="m-0 p-0">
-                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
-                                            <li>
-                                                <a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
-                                            </li>
-                                        </ul>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                                        {
+                                            <ul class="m-0 p-0">
+                                                <li><a href="/account/edit"><i class="fa-solid fa-user"></i>@User.Identity.Name</a></li>
+                                                <li>
+                                                    <a asp-controller="account" asp-action="logout"><i class="fa-solid fa-user"></i>Logout</a>
+                                                </li>
+                                            </ul>
+
+                                        }
+                                        else
+                                        {
+                                            <ul class="m-0 p-0">
+                                                <li><a asp-controller="account" asp-action="login"><i class="fa-solid fa-user"></i>Login</a></li>
+                                                <li>
+                                                    <a asp-controller="account" asp-action="register"><i class="fa-solid fa-user"></i>Register</a>
+                                                </li>
+                                            </ul>
+
+
+                                        }
                                     </div>
                                 </li>
                                 <li class="ms-3 rezervation">
-                                    <a href="#">
+                                    <a href="/room/index">
                                         <i class="fa-regular fa-bookmark"></i>Reservations
                                     </a>
                                 </li>
@@ -359,131 +353,65 @@
                                         </ul>
                                     }
                                 </div>
-                                <div class="owl-carousel owl-theme">
-                                    @foreach (RoomPicture item in Model.Room.RoomPictures.Where(r => r.IsMain == false))
-                                    {
-                                        <div class="item">
-                                            <img src="~/assets/images/rooms/@item.ImagePath" alt="">
-                                        </div>
-                                    }
-                                </div>
-                                <div class="review">
-                                    <div class="title">
-                                        @if (Model.Comment.Id == Model.Comment.RoomId)
-                                        {
-                                            <h3> @Model.Comments.Count  Comments</h3>
+                                <div id="demo" class="carousel slide my-3" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        @{
+                                            int i = 0;
                                         }
-                                        else
+                                        @foreach (RoomPicture item in Model.Room.RoomPictures.Where(p => p.IsMain == false))
                                         {
-                                            <h3>Comments</h3>
+                                            i++;
+                                            var active = i == 1 ? "active" : "";
+                                            <div class="carousel-item @active">
+                                                <img height="500px" width="100%" src="~/assets/images/rooms/@item.ImagePath" alt="">
+                                            </div>
                                         }
-
-
-
-
-
                                     </div>
-                                    <div class="mt-4">
-                                        @foreach (var item in Model.Comments)
+                                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </a>
+                                </div>
+                                <div id="Adittional" class="tabcontent">
+                                    <div class="reviewtable my-5">
 
-                                        {
-
-                                            if (Model.Room.Id == item.RoomId)
-                                            {
-                                                <div class="testimonial-item">
-
-                                                    <div class="d-flex" style="color:yellow">
-                                                        @for (int i = 0; i < @item.Star; i++)
-
-                                                        {
-
-                                                            <i class="fa-solid fa-star"></i>
-
-                                                        }
-
-
-                                                    </div>
-                                                    <p>
-                                                        @item.Message
-                                                    </p>
-
-                                                    <div class="author d-flex align-items-center">
-                                                        <div class="img">
-                                                            <img src="~/assets/images/testimonial/a29002da-efbd-449d-afe8-285e47027d78pngwing.com.png" alt="">
-                                                        </div>
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <div class="name">@item.Name</div>
-                                                                <div style="color:#555;">
-                                                                    <i class="fa-solid fa-calendar-days"></i>
-                                                                    <span>@item.CreatedDate</span>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
+                                        
+                                        <div class="all-reviews">
+                                            @await Html.PartialAsync("_ReviewStarPartial", Model)
+                                        </div>
+                                       
+                                        <form>
+                                            <input type="hidden" id="Name" name="Name">
+                                            <input id="Email" name="Email" type="hidden">
+                                            <div class="card-footer py-3 border-0">
+                                                <div class="d-flex flex-start w-100">
+                                                    <img class="shadow-1-strong me-3"
+                                                         src="~/assets/images/emojis/user (2).png" alt="avatar" width="40"
+                                                         height="40" />
+                                                    <div class="form-outline w-100">
+                                                        <textarea class="form-control" rows="4"
+                                                                  id="Message" name="Message" type="text" placeholder="Write your message" style="background: #fff;"></textarea>
                                                     </div>
                                                 </div>
-                                            }
-
-                                        }
-                                    </div>
-
-
-
-                                    <form class="form-group" method="post" action="@Url.Action("AddComment")">
-                                        <textarea asp-for="@Model.Comment.Message" cols="100" rows="5" class="form-control"
-                                                  placeholder="Write your comment"></textarea>
-                                        <div class="author d-flex align-items-center mt-3">
-
-                                            <div>
-                                                <div class="row justify-content-between">
-                                                    <div class="col-lg-6">
-                                                        <input class="form-control w-100" type="text"
-                                                               asp-for="Comment.Star" autocomplete="off" placeholder="Rating">
-                                                        @*
-                                                        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
-                                                        <div class="product-review-stars">
-                                                        <input type="radio" id="star5" name="rating" value="5" class="visuallyhidden" /><label for="star5" title="Rocks!">★</label>
-                                                        <input type="radio" id="star4" name="rating" value="4" class="visuallyhidden" /><label for="star4" title="Pretty good">★</label>
-                                                        <input type="radio" id="star3" name="rating" value="3" class="visuallyhidden" /><label for="star3" title="Meh">★</label>
-                                                        <input type="radio" id="star2" name="rating" value="2" class="visuallyhidden" /><label for="star2" title="Kinda bad">★</label>
-                                                        <input type="radio" id="star1" name="rating" value="1" class="visuallyhidden" /><label for="star1" title="Sucks big time">★</label>
-                                                        </div>
-                                                        <br />*@
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input class="form-control w-100" type="hidden"
-                                                               asp-for="Comment.Name">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input class="form-control w-100" type="hidden"
-                                                               placeholder="Email" asp-for="Comment.Email">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input class="form-control w-100" type="hidden"
-                                                               value="@Model.Room.Id" asp-for="Comment.RoomId" />
-                                                    </div>
+                                                <div class="float-end mt-2 pt-1">
+                                                    <a href="#" class="StarRate" data-id="@Model.Room.Id">Add Comment</a>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <button class="btn btn-outline-dark" type="submit">Add Comment</button>
-                                        </div>
-                                    </form>
-                                    <div class="pagination">
-                                        <a asp-controller="room" asp-action="details" asp-route-page="@(ViewBag.CurrentPage-1)" class="prev @(ViewBag.CurrentPage == 1 ? "active pointerEvent"  : "") "><i class="fa-solid fa-arrow-left"></i></a>
-                                        <div class="d-flex">
-                                            @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                                            <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+                                            <div class="product-review-stars">
+                                                <input type="radio" id="star5" name="rating" value="5" class="visuallyhidden" /><label for="star5" title="Excellent!">★</label>
+                                                <input type="radio" id="star4" name="rating" value="4" class="visuallyhidden" /><label for="star4" title="Good">★</label>
+                                                <input type="radio" id="star3" name="rating" value="3" class="visuallyhidden" /><label for="star3" title="Ok">★</label>
+                                                <input type="radio" id="star2" name="rating" value="2" class="visuallyhidden" /><label for="star2" title="Poor">★</label>
+                                                <input type="radio" id="star1" name="rating" value="1" class="visuallyhidden" /><label for="star1" title="Bad">★</label>
+                                            </div>
 
-                                            {
-                                                <a class="page @(ViewBag.CurrentPage == i ?  "active pointerEvent" : "") " asp-controller="room" asp-action="details" asp-route-page="@i">@i</a>
-                                            }
-
-                                        </div>
-                                        <a asp-controller="room" asp-action="details" asp-route-page="@(ViewBag.CurrentPage+1)" class="next @(ViewBag.CurrentPage == ViewBag.TotalPage ?  "active pointerEvent" : "") "><i class="fa-solid fa-arrow-right"></i></a>
+                                        </form>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -574,41 +502,50 @@
     </footer>
     <!-- footer end -->
     <!-- plugin js -->
-    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/assets/bootstrap/js/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
     <!-- script js -->
     <script src="~/assets/js/apartment/script.js"></script>
-    @section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        var star;
+        $(".visuallyhidden").click(function(e) {
+            star = parseInt($(this).val());
+        });
         $(document).ready(function() {
-            if ($("#rezervJs").length) {
-                Command: toastr["success"]("Zerevasiya gozlemededi")
-
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "7000",
-                    "extendedTimeOut": "2000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-            }
+            $(".StarRate").click(function(e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                var message = $("#Message").val();
+                fetch("/Room/Review" + "?rid=" + id + "&message=" + message + "&star=" + star).then(res => {
+                    return res.text()
+                }).then(data => {
+                    if (data == 0) {
+                        window.location = window.location.origin + "/Account/Login";
+                        return;
+                    }
+                    $(".all-reviews").html(data);
+                })
+            })
+        })
+        $(document).on("click", ".deletecommentprod", function(e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id");
+            var bid = $(this).attr("data-bid");
+            fetch("/Room/Delete" + "?id=" + id).then(res => {
+                return res.text();
+            }).then(data => {
+                $(".all-reviews").html(data);
+            })
         })
     </script>
-}
 </body>
 
 </html>

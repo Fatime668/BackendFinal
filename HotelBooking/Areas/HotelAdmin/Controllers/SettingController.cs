@@ -40,7 +40,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 if (setting.Photo.IsOkay(1))
                 {
                     setting.Value = await setting.Photo.FileCreate(_env.WebRootPath, @"assets\images\logo");
-                    await _context.AddAsync(setting);
+                    await _context.Settings.AddAsync(setting);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }

@@ -43,10 +43,10 @@ namespace HotelBooking.Controllers
             //ViewBag.Rooms = await _context.Rooms.Include(r => r.RoomPictures).Include(r => r.Comments).ToListAsync();
             RoomFilterVM filterVM = new RoomFilterVM
             {
-                Rooms = _roomService.SearchRoomFilter(roomTypeId, minPrice, maxPrice,sortBy),
+                Rooms = _roomService.SearchRoomFilter(roomTypeId, minPrice, maxPrice, sortBy),
                 RoomTypes = await _roomService.GetTypes(),
-                RoomTypeId =roomTypeId,
-                SortBy =sortBy,
+                RoomTypeId = roomTypeId,
+                SortBy = sortBy,
                 MinPrice = minPrice,
                 MaxPrice = maxPrice,
                 MaxAllPrice = _roomService.FindRoomMaxPrice(),
@@ -62,12 +62,13 @@ namespace HotelBooking.Controllers
 
         public async Task<IActionResult> Details(int? id, int page = 1)
         {
-            if (id == null || id == 0 || page == 0) return NotFound();
+
+            if (id == null || id == 0 || page <= 0) return NotFound();
             var query = _context.Comments.AsQueryable();
             ViewBag.RoomId = id;
             ViewBag.TotalPage = Math.Ceiling(((decimal)await query.CountAsync()) / 3);
             ViewBag.CurrentPage = page;
-            ViewBag.Rooms = await _context.Rooms.Include(r => r.RoomPictures).Include(r=>r.Comments).ToListAsync();
+            ViewBag.Rooms = await _context.Rooms.Include(r => r.RoomPictures).Include(r => r.Comments).ToListAsync();
             RoomVM model = new RoomVM
             {
                 Room = await _context.Rooms.Include(r => r.RoomPictures).Include("Bookings").Include("Comments")
@@ -76,9 +77,11 @@ namespace HotelBooking.Controllers
                 Booking = await _context.Bookings.FirstOrDefaultAsync(),
                 Comments = await query.Skip((page - 1) * 3).Take(3).ToListAsync(),
                 Comment = await _context.Comments.FirstOrDefaultAsync()
-            };
 
+
+            };
             return View(model);
+
         }
         [HttpPost]
         public async Task<IActionResult> Details(int id, Booking booking)
@@ -102,83 +105,132 @@ namespace HotelBooking.Controllers
         }
 
 
-
-
-
-        [HttpPost]
-        public async Task<IActionResult> AddComment(int id, Comment comment)
+        public async Task<IActionResult> Review(int? rid, string Message, int star = 1)
         {
-            if (User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
-
-                comment.CreatedDate = Convert.ToDateTime(DateTime.Now);
-                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                comment.Name = user.UserName;
-                comment.Email = user.Email;
-                //comment.AppUser.Id == user.Id;
-                //ViewBag.Id = room.Id;
-                //Room existedRoom = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == id);
-
-                await _context.Comments.AddAsync(comment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-
-
+                return Json(0);
             }
-            else
+            if (rid == null) return View();
+            Comment review = new Comment();
+
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+            review.Email = appUser.Email;
+            review.Name = appUser.Firstname+" "+appUser.Lastname;
+            review.Message = Message;
+            review.Star = star;
+            RoomVM roomVM = new RoomVM()
             {
-                return RedirectToAction("Register", "Account");
+                Room = await _context.Rooms.FirstOrDefaultAsync(p => p.Id == rid),
+                Comments = await _context.Comments.Where(p => p.RoomId == rid).ToListAsync()
+            };
+            if (review.Message == null || review.Email == null || review.Name == null) return PartialView("_ReviewStarPartial", roomVM);
+
+            if (review.Star == null || review.Star < 0 || review.Star > 5)
+            {
+                review.Star = 1;
             }
+            review.RoomId = (int)rid;
+            review.CreatedDate = DateTime.UtcNow.AddHours(4);
+            await _context.Comments.AddAsync(review);
+            await _context.SaveChangesAsync();
+            roomVM = new RoomVM()
+            {
+                Room = await _context.Rooms.FirstOrDefaultAsync(p => p.Id == rid),
+                Comments = await _context.Comments.Where(p => p.RoomId == rid).ToListAsync()
+            };
+            return PartialView("_ReviewStarPartial", roomVM);
         }
 
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return BadRequest();
 
+            Comment review = await _context.Comments
+                .FirstOrDefaultAsync(r => r.Id == id);
+            if (review == null) return NotFound();
+
+            review.IsDeleted = true;
+            //review.DeletedAt = DateTime.UtcNow.AddHours(4);
+            await _context.SaveChangesAsync();
+            RoomVM roomVM = new RoomVM()
+            {
+                Room = await _context.Rooms.FirstOrDefaultAsync(P => P.Id == review.RoomId),
+                Comments = await _context.Comments.Where(p => p.RoomId == review.RoomId && !p.IsDeleted).ToListAsync()
+            };
+            return PartialView("_ReviewStarPartial", roomVM);
+        }
+      
 
         //[HttpPost]
-        //public async Task<IActionResult> AddComment(int? id, int? star, string comment)
+        //[AutoValidateAntiforgeryToken]
+        //public async Task<IActionResult> AddRoomReview(int? id, int? star, string comment)
         //{
-        //    if (!User.Identity.IsAuthenticated) return RedirectToAction("login", "account");
+        //    if (User.Identity.IsAuthenticated) return RedirectToAction("login", "account");
         //    if (id is null || star is null || star <= 0 || star > 5) return NotFound();
+        //    Comment review = new Comment();
 
-        //    Comment comment1 = new Comment();
-
-        //    AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+        //    AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
 
         //    if (_context.Comments.Any(x => x.RoomId == id && x.AppUser.Id == appUser.Id))
-        //        return RedirectToAction(nameof(Details), new { id });
-        //    comment1.AppUser.Id = appUser.Id;
-        //    comment1.Fullname = appUser.UserName;
-        //    comment1.Star = (int)star;
-        //    RoomVM roomVM = new RoomVM()
+        //        return RedirectToAction(nameof(Room), new { id });
+        //    review.AppUser.Id = appUser.Id;
+        //    review.Email = appUser.Email;
+        //    review.Name = appUser.UserName;
+        //    review.Star = (int)star;
+
+        //    RoomVM roomVM = new RoomVM
         //    {
-        //        Room = await _context.Rooms.FirstOrDefaultAsync(p => p.Id == id ),
-        //        Comments = await _context.Comments.Where(p => p.RoomId == id ).ToListAsync()
+        //        Room = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == id),
+        //        Comments = await _context.Comments.Where(c => c.RoomId == id).ToListAsync()
         //    };
-
         //    if (string.IsNullOrWhiteSpace(comment) || string.IsNullOrEmpty(comment) || comment.Length > 1000)
-        //        return RedirectToAction(nameof(Details), new { id });
+        //        return RedirectToAction(nameof(Room), new { id });
 
+        //    review.Message = comment.Trim();
+        //    review.RoomId = (int)id;
+        //    review.CreatedDate = DateTime.UtcNow.AddHours(4);
 
-        //    comment1.CommentContent = comment.Trim();
-        //    comment1.RoomId = (int)id;
-        //    comment1.CommentDate = DateTime.UtcNow.AddHours(4);
-
-        //    await _context.Comments.AddAsync(comment1);
+        //    await _context.Comments.AddAsync(review);
         //    await _context.SaveChangesAsync();
 
         //    roomVM = new RoomVM()
         //    {
-        //        Room = await _context.Rooms.FirstOrDefaultAsync(p => p.Id == id),
-        //        Comments = await _context.Comments.Where(p => p.RoomId == id).ToListAsync()
+        //        Room = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == id),
+        //        Comments = await _context.Comments.Where(r => r.RoomId == id).ToListAsync()
         //    };
 
-        //    return RedirectToAction(nameof(Details), new { id });
+        //    return RedirectToAction(nameof(Room) , new { id });
 
 
         //}
 
+        //[HttpPost]
+        //public async Task<IActionResult> AddComment(int id, Comment comment)
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+
+        //        comment.CreatedDate = Convert.ToDateTime(DateTime.Now);
+        //        AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+        //        comment.Name = user.UserName;
+        //        comment.Email = user.Email;
+        //        //comment.AppUser.Id == user.Id;
+        //        //ViewBag.Id = room.Id;
+        //        //Room existedRoom = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == id);
+
+        //        await _context.Comments.AddAsync(comment);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
 
 
-       
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Register", "Account");
+        //    }
+        //}
+
     }
 }

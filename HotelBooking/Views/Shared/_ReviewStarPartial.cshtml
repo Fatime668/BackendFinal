@@ -1,0 +1,60 @@
+﻿@model RoomVM
+@{
+    double avgstar = Model.Room.Comments.Count() > 0 ? (Model.Room.Comments.Sum(s => s.Star) / (double)Model.Room.Comments.Count()) : 0;
+}
+
+<style>
+    .reviewtext {
+        position: relative;
+    }
+
+    .icons {
+        margin-bottom: 20px;
+    }
+</style>
+<section>
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center">
+         
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 style="color:#32445D;font-weight:bold">@Model.Comments.Count() Comments</h2>
+                    <strong>Rating scale -<span style="color:blue"> @((avgstar).ToString("0.0"))</span></strong>
+                </div>
+           
+            <div>
+                @foreach (Comment review in Model.Comments)
+                {
+                    @if (Model.Room.Id == review.RoomId)
+                    {
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex flex-start align-items-center">
+                                    <img class=" shadow-1-strong me-3" src="~/assets/images/emojis/user (2).png" alt="avatar" width="60" height="60" />
+                                    <div>
+                                        <h6 class="fw-bold text-primary mb-1">@review.Name</h6>
+                                        <p class="text-muted small mb-0" style="color:#32445D;font-weight:600">
+                                            Shared publicly - @review.CreatedDate
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="mt-3 mb-4 pb-2">
+                                    @review.Message
+                                </p>
+                                <div class="small d-flex justify-content-start">
+                                    <div class="icons" style="color:#FFC107;">
+                                        @for (int i = 0; i < review.Star; i++)
+                                        {
+                                            <i class="fa-solid fa-star"></i>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>

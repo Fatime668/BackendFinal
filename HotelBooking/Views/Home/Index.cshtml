@@ -195,7 +195,7 @@
                             <span>SPA OFFERS</span>
                         </div>
                         <div class="item-count">
-                            <span class="counter">32</span>+
+                            <span class="counter">@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="spaoffers").Value</span>+
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                             <span>ROOMS</span>
                         </div>
                         <div class="item-count">
-                            <span class="counter">@Model.Rooms.Count()</span>+
+                            <span class="counter">@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="rooms").Value</span>+
                         </div>
                     </div>
                 </div>
@@ -215,7 +215,7 @@
                             <span>BEACHES</span>
                         </div>
                         <div class="item-count">
-                            <span class="counter">@Model.Galleries.Where(g=>g.CategoryId==3).Count()</span>+
+                            <span class="counter">@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="beaches").Value</span>+
                         </div>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                             <span>HAPPY CLIENTS</span>
                         </div>
                         <div class="item-count">
-                            <span class="counter">10</span>k
+                            <span class="counter">@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="happyclients").Value</span>k
                         </div>
                     </div>
                 </div>

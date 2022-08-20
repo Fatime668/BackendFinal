@@ -62,8 +62,8 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-3">
                         <div class="nav-logo">
-                            <a href="index.html">
-                                <img src="~/assets/images/logo/logo-black.svg" alt="">
+                            <a href="/home/index">
+                                <img src="~/assets/images/logo/@layoutService.GetSetting().Result.FirstOrDefault(s=>s.Key.Trim().ToLower()=="headerblacklogo").Value" alt="">
                             </a>
                         </div>
                     </div>
@@ -80,11 +80,11 @@
                                 </label>
                             </div>
                             <ul class="m-0 p-0">
-                                <li><a href="room.html">Rooms</a></li>
-                                <li class="ms-4"><a class="active" href="gallery.html">Gallery</a></li>
-                                <li class="ms-4"><a href="about.html">About Us</a></li>
+                                <li><a href="/room/index">Rooms</a></li>
+                                <li class="ms-4"><a class="active" href="/gallery/index">Gallery</a></li>
+                                <li class="ms-4"><a href="/about/index">About Us</a></li>
                                 <li class="ms-4"><a href="blog.html">Blog</a></li>
-                                <li class="ms-4"><a href="contact.html">Contact Us</a></li>
+                                <li class="ms-4"><a href="/contact/index">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -92,15 +92,31 @@
                         <div class="rezerv">
                             <ul class="d-flex m-0 p-0 justify-content-end">
                                 <li class="user"><a href="#"><i class="fa-solid fa-user-large"></i></a>
-                                    <div class="dropdown">
-                                        <ul class="m-0 p-0">
-                                            <li><a href="login.html"><i class="fa-solid fa-user"></i>Login</a></li>
-                                            <li><a href="register.html"><i class="fa-solid fa-user"></i>Register</a>
-                                            </li>
-                                        </ul>
+                                   <div class="dropdown">
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                                        {
+                                            <ul class="m-0 p-0">
+                                                <li><a href="/account/edit"><i class="fa-solid fa-user"></i>@User.Identity.Name</a></li>
+                                                <li>
+                                                    <a asp-controller="account" asp-action="logout"><i class="fa-solid fa-user"></i>Logout</a>
+                                                </li>
+                                            </ul>
+
+                                        }
+                                        else
+                                        {
+                                            <ul class="m-0 p-0">
+                                                <li><a asp-controller="account" asp-action="login"><i class="fa-solid fa-user"></i>Login</a></li>
+                                                <li>
+                                                    <a asp-controller="account" asp-action="register"><i class="fa-solid fa-user"></i>Register</a>
+                                                </li>
+                                            </ul>
+
+
+                                        }
                                     </div>
                                 </li>
-                                <li class="ms-3 rezervation"><a href="room.html"><i
+                                <li class="ms-3 rezervation"><a href="/room/index"><i
                                             class="fa-regular fa-bookmark"></i>Reservations</a></li>
                             </ul>
                             <div class="bar d-none justify-content-end align-items-center">
@@ -217,12 +233,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- script js -->
     <script src="~/assets/js/gallery/script.js"></script>
-   @* <script>
-        $(".gallaryId").on("change",function(){
-              let url = $(this).val();
-            window.location.href = url;
-        })
-    </script>*@
+    <script>
+       
+    </script>
 </body>
 
 </html>

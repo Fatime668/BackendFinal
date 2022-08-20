@@ -31,7 +31,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            await _context.AddAsync(roomType);
+            await _context.RoomTypes.AddAsync(roomType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

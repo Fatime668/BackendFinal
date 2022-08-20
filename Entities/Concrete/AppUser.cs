@@ -15,6 +15,7 @@ namespace Entities.Concrete
         [Required, StringLength(maximumLength: 15)]
         public string Lastname { get; set; }
         public bool IsBlock { get; set; }
+        public bool IsAdmin { get; set; }
         public string ImageUrl { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }

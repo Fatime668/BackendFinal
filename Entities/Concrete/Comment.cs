@@ -16,13 +16,16 @@ namespace Entities.Concrete
        
         [StringLength(1000), Required]
         public string Message { get; set; }
+        public bool IsDeleted { get; set; }
         public  DateTime CreatedDate { get; set; }
         
         [Required, Range(1, 5)]
         public int Star { get; set; }
+        public bool Status { get; set; }
         public AppUser AppUser { get; set; }
         public int RoomId { get; set; }
         public Room Room { get; set; }
-       
+        
+
     }
 }
