@@ -13,6 +13,7 @@ namespace HotelBooking.ViewModels
         public List<RoomPicture> RoomPictures { get; set; }
         public List<Comment> Comments { get; set; }
         public Comment Comment { get; set; }
+        public List<Booking> Bookings { get; set; }
         public Booking Booking { get; set; }
     }
 }

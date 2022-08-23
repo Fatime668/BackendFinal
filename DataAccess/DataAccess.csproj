@@ -35,6 +35,26 @@
     <Compile Remove="Migrations\20220819063949_CommentStatus.Designer.cs" />
     <Compile Remove="Migrations\20220819064156_CommentStatus.cs" />
     <Compile Remove="Migrations\20220819064156_CommentStatus.Designer.cs" />
+    <Compile Remove="Migrations\20220821074257_removeIsreserved.cs" />
+    <Compile Remove="Migrations\20220821074257_removeIsreserved.Designer.cs" />
+    <Compile Remove="Migrations\20220821120249_createBookingStatus.cs" />
+    <Compile Remove="Migrations\20220821120249_createBookingStatus.Designer.cs" />
+    <Compile Remove="Migrations\20220821121028_createBookingStatus.cs" />
+    <Compile Remove="Migrations\20220821121028_createBookingStatus.Designer.cs" />
+    <Compile Remove="Migrations\20220821122331_createrelationbookingstatus.cs" />
+    <Compile Remove="Migrations\20220821122331_createrelationbookingstatus.Designer.cs" />
+    <Compile Remove="Migrations\20220821123441_bookingtablestatuscolumn.cs" />
+    <Compile Remove="Migrations\20220821123441_bookingtablestatuscolumn.Designer.cs" />
+    <Compile Remove="Migrations\20220822040301_Roomrequiredcolumn.cs" />
+    <Compile Remove="Migrations\20220822040301_Roomrequiredcolumn.Designer.cs" />
+    <Compile Remove="Migrations\20220822061228_Bookingrequired.cs" />
+    <Compile Remove="Migrations\20220822061228_Bookingrequired.Designer.cs" />
+    <Compile Remove="Migrations\20220822080752_removeRoomRequiredColumn.cs" />
+    <Compile Remove="Migrations\20220822080752_removeRoomRequiredColumn.Designer.cs" />
+    <Compile Remove="Migrations\20220822204449_createNewColumn.cs" />
+    <Compile Remove="Migrations\20220822204449_createNewColumn.Designer.cs" />
+    <Compile Remove="Migrations\20220822204943_newcolumn.cs" />
+    <Compile Remove="Migrations\20220822204943_newcolumn.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

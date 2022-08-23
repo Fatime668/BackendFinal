@@ -371,33 +371,32 @@ main #login form .login-form h4 {
   padding: 0 0 20px;
   font-weight: bold;
 }
-main #login form .login-form label {
+main #login form .login-form .name .input-field input {
+  padding: 0 10px;
+}
+main #login form .login-form .input-field {
+  margin: 27px 0;
+  height: 50px;
+  width: 100%;
+}
+main #login form .login-form .input-field label {
+  position: relative;
+  top: -5px;
   font-size: 14px;
   color: #525252;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
-main #login form .login-form .name .input-field input {
-  padding: 0 10px;
-}
-main #login form .login-form .input-field {
-  background-color: red;
-  margin: 15px 0;
-  position: relative;
-  height: 50px;
-  width: 100%;
-}
 main #login form .login-form .input-field i {
   position: absolute;
   z-index: 9;
+  font-size: 14px;
   color: rgb(118, 114, 114);
   top: 50%;
-  font-size: 14px;
   left: 10px;
   transform: translateY(-50%);
 }
 main #login form .login-form .input-field input {
-  position: absolute;
   width: 100%;
   height: 100%;
   padding: 0 35px;
@@ -406,18 +405,10 @@ main #login form .login-form .input-field input {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
-main #login form .login-form .input-field .showhide {
-  position: absolute;
-  top: 50%;
-  right: 40px;
-  cursor: pointer;
-}
-main #login form .login-form .input-field .showhide #hide {
-  display: none;
-}
 main #login button {
   padding: 15px 45px;
   border-radius: 30px;
+  margin-top: 25px;
   font-size: 16px;
   font-weight: bold;
   font-family: "Playfair Display", serif;

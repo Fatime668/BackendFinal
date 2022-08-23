@@ -8,27 +8,21 @@ namespace Entities.Concrete
 {
     public class Booking : BaseEntity
     {
-        [Required,DataType(DataType.Date)]
+        [Required]
         public DateTime ArrivalDate { get; set; }
 
-        [Required, DataType(DataType.Date)]
+        [Required]
         public DateTime DepartureDate { get; set; }
         [Required]
         public byte Adults { get; set; }
         [Required]
         public byte Children { get; set; }
+        public int BookingStatusId { get; set; }
+        public BookingStatus Status { get; set; }
+        public string AppUserId { get; set; }
         public AppUser  AppUser { get; set; }
+        [Required]
         public int? RoomId { get; set; }
         public Room Room { get; set; }
-        public bool IsReserved { get; set; }
-        [NotMapped]
-        public string ArrivalDateTime => ArrivalDate.ToString("MM/dd/yyyy");
-        [NotMapped]
-        public string DepartureDateTime => DepartureDate.ToString("MM/dd/yyyy");
-        [NotMapped]
-        public string DepartureTime => DepartureDate.ToString("hh:mm tt");
-        [NotMapped]
-        public string ArrivalTime => ArrivalDate.ToString("hh:mm tt");
-
     }
 }

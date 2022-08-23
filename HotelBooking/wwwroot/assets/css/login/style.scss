@@ -389,79 +389,74 @@ header{
         }
     }
     #login{
-        width: 100%;
-        margin: 70px 0;
-        form{
-            .login-form{
-                box-shadow: 1px 1px 5px 5px rgb(0 0 0 / 10%);
-                background-color: #ffffff;
-                padding: 30px;
-                h4{
-                    font-size: 24px;
-                    font-family: $font_display;
-                    padding: 0 0 20px;
-                    font-weight: bold;
+      width: 100%;
+      margin: 70px 0;
+      form{
+          .login-form{
+              box-shadow: 1px 1px 5px 5px rgb(0 0 0 / 10%);
+              background-color: #ffffff;
+              padding: 30px;
+              h4{
+                  font-size: 24px;
+                  font-family: $font_display;
+                  padding: 0 0 20px;
+                  font-weight: bold;
+              }
+            
+              .name{
+                .input-field{
+                  input{
+                    padding:0 10px;
+                  }
                 }
+              }
+             
+              .input-field{
+                margin: 27px 0;
+                height: 50px;
+                width: 100%;
                 label{
+                  position: relative;
+                    top: -5px;
                     font-size: 14px;
                     color: #525252;
                     font-family: $font_roboto;
                     font-weight: bold;
                 }
-                .name{
-                  .input-field{
-                    input{
-                      padding:0 10px;
-                    }
-                  }
-                }
-                .input-field{
-                  background-color: red;
-                  margin: 15px 0;
-                  position: relative;
-                  height: 50px;
-                  width: 100%;
-                  i{
-                    position: absolute;
-                    z-index: 9;
-                    color: rgb(118, 114, 114);
-                    top: 50%;
-                    font-size: 14px ;
-                    left: 10px;
-                    transform: translateY(-50%);
-                  }
-                  input{
-                    position: absolute  ;
-                    width: 100%;
-                    height: 100%;
-                    padding: 0 35px;
-                    border: 1px solid #dee2e6;
-                    font-weight: 400;
-                    font-family: $font_roboto;
-                    font-size: 14px;
-                }
-                .showhide{
+                i{
                   position: absolute;
+                  z-index: 9;
+                  font-size: 14px;
+                  color: rgb(118, 114, 114);
                   top: 50%;
-                  right: 40px;
-                  cursor: pointer;
-                  #hide{
-                    display: none;
-                  }
+                  left: 10px;
+                  transform: translateY(-50%);
                 }
-                }
-            }
-        }
-        button{
-            padding:15px 45px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            font-family: $font_display;
-            color: #fff;
-            background-color: $primary_color;
-        }
-    }
+                input{
+                  width: 100%;
+                  height: 100%;
+                  padding: 0 35px;
+                  border: 1px solid #dee2e6;
+                  font-weight: 400;
+                  font-family: $font_roboto;
+                  font-size: 14px;
+              }
+             
+
+              }
+          }
+      }
+      button{
+          padding:15px 45px;
+          border-radius: 30px;
+          margin-top: 25px;
+          font-size: 16px;
+          font-weight: bold;
+          font-family: $font_display;
+          color: #fff;
+          background-color: $primary_color;
+      }
+  }
   }
     //footer start
 #footer{

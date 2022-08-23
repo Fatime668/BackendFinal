@@ -375,12 +375,13 @@ main #register form .login-form .name .input-field input {
   padding: 0 10px;
 }
 main #register form .login-form .input-field {
-  margin: 20px 0;
+  margin: 27px 0;
   height: 50px;
   width: 100%;
 }
 main #register form .login-form .input-field label {
-  top: -25px;
+  position: relative;
+  top: -5px;
   font-size: 14px;
   color: #525252;
   font-family: "Roboto", sans-serif;
@@ -407,6 +408,7 @@ main #register form .login-form .input-field input {
 main #register button {
   padding: 15px 45px;
   border-radius: 30px;
+  margin-top: 25px;
   font-size: 16px;
   font-weight: bold;
   font-family: "Playfair Display", serif;

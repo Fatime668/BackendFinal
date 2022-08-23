@@ -170,7 +170,6 @@
                                                     <a asp-controller="account" asp-action="logout"><i class="fa-solid fa-user"></i>Logout</a>
                                                 </li>
                                             </ul>
-
                                         }
                                         else
                                         {
@@ -180,8 +179,6 @@
                                                     <a asp-controller="account" asp-action="register"><i class="fa-solid fa-user"></i>Register</a>
                                                 </li>
                                             </ul>
-
-
                                         }
                                     </div>
                                 </li>
@@ -261,7 +258,7 @@
                     </h1>
                 </div>
                 <div class="row">
-                    @if (Model != null && Model.Rooms != null && Model.Rooms.Count > 0 && Model.Rooms.Count <= 259)
+                    @if (Model != null && Model.Rooms != null && Model.Rooms.Count > 0 && Model.Rooms.Count <= 259 || Model.MinPrice > 259)
                     {
                         @foreach (var room in Model.Rooms)
                         {

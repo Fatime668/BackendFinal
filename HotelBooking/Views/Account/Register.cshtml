@@ -138,21 +138,21 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12 name">
                                         <div class="input-field">
-                                            <label style="position:absolute; top:-25px">First Name</label>
+                                            <label>First Name</label>
                                             <input type="tel" placeholder="First Name" asp-for="Firstname">
                                             <span class="text-danger" asp-validation-for="Firstname"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12 name">
                                         <div class="input-field">
-                                            <label style="position:absolute; top:-25px">Last Name</label>
+                                            <label>Last Name</label>
                                             <input placeholder="Last Name" asp-for="Lastname">
                                             <span class="text-danger" asp-validation-for="Lastname"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-field">
-                                            <label  style="position:absolute; top:-25px">Username</label>
+                                            <label>Username</label>
                                             <i class="fa-solid fa-user"></i>
                                             <input  placeholder="Username" asp-for="Username">
                                             <span class="text-danger" asp-validation-for="Username"></span>
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-field form-group">
-                                            <label style="position:absolute; top:-25px">Phone Number</label>
+                                            <label>Phone Number</label>
                                             <i class="fa-solid fa-phone"></i>
                                             <input placeholder="Phone Number" asp-for="PhoneNumber">
                                             <span class="text-danger" asp-validation-for="PhoneNumber"></span>
@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="input-field">
-                                            <label style="position:absolute; top:-25px">Email Address*</label>
+                                            <label>Email Address*</label>
                                             <i class="fa-solid fa-envelope"></i>
                                             <input  placeholder="Email Address" asp-for="Email">
                                             <span class="text-danger" asp-validation-for="Email"></span>
@@ -177,26 +177,18 @@
                                    
                                     <div class="col-md-6">
                                         <div class="input-field">
-                                            <label style="position:absolute; top:-25px">Password</label>
+                                            <label>Password</label>
                                             <i class="fa-solid fa-lock"></i>
                                             <input type="password" placeholder="Password" id="myInput1" asp-for="Password">
                                             <span class="text-danger" asp-validation-for="Password"></span>
-                                            <span class="showhide" onclick="myFunction1()">
-                                                <i id="hide1" class="fa-solid fa-eye"></i>
-                                                <i id="hide2" class="fa-solid fa-eye-slash"></i>
-                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-field">
-                                            <label style="position:absolute; top:-25px">Confirm Password</label>
+                                            <label>Confirm Password</label>
                                             <i class="fa-solid fa-lock"></i>
                                             <input type="password" placeholder="Confirm Password" id="myInput2" asp-for="ConfirmPassword">
                                             <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
-                                            <span class="showhide" onclick="myFunction2()">
-                                                <i id="hide3" class="fa-solid fa-eye"></i>
-                                                <i id="hide4" class="fa-solid fa-eye-slash"></i>
-                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

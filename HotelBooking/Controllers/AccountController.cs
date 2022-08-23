@@ -120,6 +120,8 @@ namespace HotelBooking.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> ForgotPassword(AccountVM account)
         {
+            if (!ModelState.IsValid) return View();
+            
             AppUser user = await _userManager.FindByEmailAsync(account.AppUser.Email);
             if (user == null) return BadRequest();
             TempData["ForgotPassword"] = true;

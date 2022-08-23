@@ -17,10 +17,11 @@ namespace Entities.Concrete
         public byte NoOfBed { get; set; }
         [Required]
         public byte NoOfBath { get; set; }
+        [Required]
         public string Location { get; set; }
         [Required]
         public double Size { get; set; }
-        public bool Status { get; set; }
+        public bool IsAcive { get; set; }
         public bool IsFeatured { get; set; }
         public bool IsPopular { get; set; }
         public int RoomTypeId { get; set; }

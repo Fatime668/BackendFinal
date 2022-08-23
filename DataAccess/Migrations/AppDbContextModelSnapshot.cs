@@ -172,10 +172,11 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("DepartureDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsReserved")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("RoomId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -184,7 +185,24 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("RoomId");
 
+                    b.HasIndex("StatusId");
+
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.BookingStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BookingStatus");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
@@ -319,6 +337,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAcive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsFeatured")
                         .HasColumnType("bit");
 
@@ -326,6 +347,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Location")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("NoOfBath")
@@ -342,9 +364,6 @@ namespace DataAccess.Migrations
 
                     b.Property<double>("Size")
                         .HasColumnType("float");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -662,7 +681,13 @@ namespace DataAccess.Migrations
 
                     b.HasOne("Entities.Concrete.Room", "Room")
                         .WithMany("Bookings")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.BookingStatus", "Status")
+                        .WithMany("Bookings")
+                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Comment", b =>

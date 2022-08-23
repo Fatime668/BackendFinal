@@ -137,27 +137,21 @@
                                 <h4 class="login-title">Login</h4>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>Username</label>
                                         <div class="input-field">
-                                            <i class="fa-solid fa-user"></i>
+                                            <label>Username</label>
                                             <input asp-for="Username" type="text" placeholder="Username">
                                             <span class="text-danger" asp-validation-for="Username"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <label>Password</label>
                                         <div class="input-field">
-                                            <i class="fa-solid fa-lock"></i>
+                                            <label>Password</label>
                                             <input asp-for="Password" type="password" placeholder="Password" id="myInput">
-                                            <span class="showhide" onclick="myFunction()">
-                                                <i class="fa-solid fa-eye" id="hide1"></i>
-                                                <i class="fa-solid fa-eye-slash" id="hide2"></i>
-                                            </span>
                                             <span class="text-danger" asp-validation-for="Password"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12 my-2 d-flex justify-content-start align-items-center">
-                                        <div class="form-check">
+                                        <div class="form-check mt-2">
                                             <label class="form-check-label text-muted" style="cursor:pointer">
                                                 <input asp-for="RememberMe" type="checkbox" class="form-check-input">
                                                 Keep me signed in

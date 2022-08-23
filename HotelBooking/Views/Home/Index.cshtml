@@ -18,7 +18,7 @@
 {
     <input type="hidden" id="verifiedJs" />
 }
-@if (TempData["Booking"] != null)
+@if (TempData["Rezerv"] != null)
 {
     <input type="hidden" id="bookingJs" />
 }
@@ -57,8 +57,8 @@
     <section id="about">
         <div class="container">
             <div class="heading">
-                <span >About us</span>
-                <h1 class="title" >
+                <span>About us</span>
+                <h1 class="title">
                     Begin your amazing <br> adventure.
                 </h1>
             </div>
@@ -135,7 +135,7 @@
                                 <div class="roomItem">
                                     <span class="popular">Popular</span>
                                     <div class="img">
-                                        <a href="/room/details/@item.Id"  roomId="@item.Id" class="itemRoom_link">
+                                        <a href="/room/details/@item.Id" roomId="@item.Id" class="itemRoom_link">
                                             <img src="~/assets/images/rooms/@item.RoomPictures.FirstOrDefault(r=>r.IsMain==true)?.ImagePath" alt="">
                                         </a>
                                     </div>
@@ -384,27 +384,27 @@
                 }
             }
             if ($("#bookingJs").length) {
-                Command: toastr["success"]("Reservation completed successfully")
+                Command: toastr["info"]("When your reservation is confirmed, a message will be sent to your gmail")
 
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
                     "newestOnTop": false,
-                    "progressBar": false,
+                    "progressBar": true,
                     "positionClass": "toast-top-right",
                     "preventDuplicates": false,
                     "onclick": null,
                     "showDuration": "300",
                     "hideDuration": "1000",
-                    "timeOut": "7000",
-                    "extendedTimeOut": "2000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
                     "showEasing": "swing",
                     "hideEasing": "linear",
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
             }
-             if ($("#editJs").length) {
+            if ($("#editJs").length) {
                 Command: toastr["info"]("The operation was completed successfully")
 
                 toastr.options = {

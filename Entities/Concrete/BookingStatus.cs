@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public enum BookingStatus
+    public class BookingStatus:BaseEntity
     {
-        Reserved=1,
-        Full=2,
-        Empty=3
+        public string Status { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }
