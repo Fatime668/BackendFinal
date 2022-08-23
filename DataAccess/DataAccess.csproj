@@ -5,59 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20220804114035_createTables.cs" />
-    <Compile Remove="Migrations\20220804114035_createTables.Designer.cs" />
-    <Compile Remove="Migrations\20220804115502_createIdentity.cs" />
-    <Compile Remove="Migrations\20220804115502_createIdentity.Designer.cs" />
-    <Compile Remove="Migrations\20220804142644_create.cs" />
-    <Compile Remove="Migrations\20220804142644_create.Designer.cs" />
-    <Compile Remove="Migrations\20220804142859_createTables.cs" />
-    <Compile Remove="Migrations\20220804142859_createTables.Designer.cs" />
-    <Compile Remove="Migrations\20220804161155_create.cs" />
-    <Compile Remove="Migrations\20220804161155_create.Designer.cs" />
-    <Compile Remove="Migrations\20220804162924_createColumn.cs" />
-    <Compile Remove="Migrations\20220804162924_createColumn.Designer.cs" />
-    <Compile Remove="Migrations\20220809171131_createBookingColumn.cs" />
-    <Compile Remove="Migrations\20220809171131_createBookingColumn.Designer.cs" />
-    <Compile Remove="Migrations\20220810103058_createStatus.cs" />
-    <Compile Remove="Migrations\20220810103058_createStatus.Designer.cs" />
-    <Compile Remove="Migrations\20220811061558_createBooking.cs" />
-    <Compile Remove="Migrations\20220811061558_createBooking.Designer.cs" />
-    <Compile Remove="Migrations\20220811063059_update.cs" />
-    <Compile Remove="Migrations\20220811063059_update.Designer.cs" />
-    <Compile Remove="Migrations\20220811191220_createComment.cs" />
-    <Compile Remove="Migrations\20220811191220_createComment.Designer.cs" />
-    <Compile Remove="Migrations\20220818121126_requiredcolumn.cs" />
-    <Compile Remove="Migrations\20220818121126_requiredcolumn.Designer.cs" />
-    <Compile Remove="Migrations\20220819063750_CommentStatus.cs" />
-    <Compile Remove="Migrations\20220819063750_CommentStatus.Designer.cs" />
-    <Compile Remove="Migrations\20220819063949_CommentStatus.cs" />
-    <Compile Remove="Migrations\20220819063949_CommentStatus.Designer.cs" />
-    <Compile Remove="Migrations\20220819064156_CommentStatus.cs" />
-    <Compile Remove="Migrations\20220819064156_CommentStatus.Designer.cs" />
-    <Compile Remove="Migrations\20220821074257_removeIsreserved.cs" />
-    <Compile Remove="Migrations\20220821074257_removeIsreserved.Designer.cs" />
-    <Compile Remove="Migrations\20220821120249_createBookingStatus.cs" />
-    <Compile Remove="Migrations\20220821120249_createBookingStatus.Designer.cs" />
-    <Compile Remove="Migrations\20220821121028_createBookingStatus.cs" />
-    <Compile Remove="Migrations\20220821121028_createBookingStatus.Designer.cs" />
-    <Compile Remove="Migrations\20220821122331_createrelationbookingstatus.cs" />
-    <Compile Remove="Migrations\20220821122331_createrelationbookingstatus.Designer.cs" />
-    <Compile Remove="Migrations\20220821123441_bookingtablestatuscolumn.cs" />
-    <Compile Remove="Migrations\20220821123441_bookingtablestatuscolumn.Designer.cs" />
-    <Compile Remove="Migrations\20220822040301_Roomrequiredcolumn.cs" />
-    <Compile Remove="Migrations\20220822040301_Roomrequiredcolumn.Designer.cs" />
-    <Compile Remove="Migrations\20220822061228_Bookingrequired.cs" />
-    <Compile Remove="Migrations\20220822061228_Bookingrequired.Designer.cs" />
-    <Compile Remove="Migrations\20220822080752_removeRoomRequiredColumn.cs" />
-    <Compile Remove="Migrations\20220822080752_removeRoomRequiredColumn.Designer.cs" />
-    <Compile Remove="Migrations\20220822204449_createNewColumn.cs" />
-    <Compile Remove="Migrations\20220822204449_createNewColumn.Designer.cs" />
-    <Compile Remove="Migrations\20220822204943_newcolumn.cs" />
-    <Compile Remove="Migrations\20220822204943_newcolumn.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.27" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.27" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.27" />

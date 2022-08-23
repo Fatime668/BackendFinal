@@ -154,7 +154,7 @@
                 <div class="images">
                    @foreach (var item in Model.Galleries)
                     {
-                         if (item.CategoryId ==2)
+                         if (item.CategoryId ==1)
                         {
                               <div class="itemBox @item.Category.Name">
                         <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
@@ -166,7 +166,7 @@
                         </div>
                     </div>
                         }
-                         if (item.CategoryId==3)
+                         if (item.CategoryId==2)
                         {
                               <div class="itemBox @item.Category.Name">
                         <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                         }
-                          if (item.CategoryId==4)
+                          if (item.CategoryId==3)
                         {
                               <div class="itemBox @item.Category.Name">
                         <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">

@@ -81,42 +81,6 @@ namespace HotelBooking.Controllers
             return View(model);
         }
 
-        //private async Task<bool> IsReserved(DateTime startDateTime, DateTime EndDateTime, int? roomId)
-        //{
-        //    var room = await _context.Rooms.Where(b => b.Id == roomId).Include(b=>b.Bookings).FirstOrDefaultAsync();
-        //    if (room.Bookings.Count == 0) return false;
-        //    var reservs = room.Bookings.Where(p => p.ArrivalDate.Date <= startDateTime.Date).ToList();
-
-        //    foreach (var reserv in reservs)
-        //    {
-        //        if (reserv.ArrivalDate == startDateTime && reserv.DepartureDate == EndDateTime)
-        //        {
-        //            return true;
-        //        }
-
-        //        if (reserv.ArrivalDate < EndDateTime && reserv.DepartureDate > startDateTime)
-        //        {
-        //            return true;
-        //        }
-
-        //        if (reserv.ArrivalDate >= EndDateTime || reserv.DepartureDate <= startDateTime)
-        //        {
-        //            //25-3-2022  14:00 - 16:00 **
-        //            //25-3-2022  17:00 - 18:00
-        //            //25-3-2022  11:00 - 12:00
-        //            //25-3-2022  11:00 - 15:00
-        //            //25-3-2022  11:00 - 18:00
-
-        //            return false;
-        //        }
-        //    }
-
-        //    return true;
-
-          
-        //}
-
-
         public async Task<bool> IsReserved(DateTime startDateTime, DateTime EndDateTime, int RoomId)
         {
             var room = await _context
@@ -211,7 +175,7 @@ namespace HotelBooking.Controllers
                 return Content("Reserved");
             }
 
-            booking.Status = t.BookingStatus.Pending
+            booking.BookingStatusId = 1;
 
             booking.AppUser = await _userManager.FindByNameAsync(User.Identity.Name);
             booking.RoomId = id;
