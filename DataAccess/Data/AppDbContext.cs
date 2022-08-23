@@ -56,5 +56,6 @@ namespace DataAccess.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<AppUser> AppUser { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<BookingStatus> BookingStatuses { get; set; }
     }
 }

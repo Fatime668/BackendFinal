@@ -202,7 +202,7 @@ namespace DataAccess.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookingStatus");
+                    b.ToTable("BookingStatuses");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>

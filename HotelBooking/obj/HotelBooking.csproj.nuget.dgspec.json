@@ -44,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.27, )"
@@ -126,6 +130,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -222,6 +230,10 @@
             "Chart.js": {
               "target": "Package",
               "version": "[3.7.1, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -320,6 +332,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.27, )"

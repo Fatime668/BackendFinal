@@ -239,3 +239,6 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Raz
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Comment\Delete.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ReviewStarPartial.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Booking\Index.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

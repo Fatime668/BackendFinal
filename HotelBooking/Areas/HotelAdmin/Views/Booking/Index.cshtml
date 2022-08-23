@@ -3,6 +3,19 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
 }
+@*
+<form method="post">
+    <div>
+     <label class="mb-3">BookingStatuses:</label><br />
+        <select class="form-control" asp-for="BookingStatusId" asp-items="@(new SelectList(ViewBag.BookingStatuses,"Id","Name"))"></select>
+        <span class="text-danger" asp-validation-for="BookingStatusId"></span>
+    </div>
+    <div>
+          <button type="submit" class="btn btn-outline-success">Accept</button>
+    </div>
+</form>
+*@
+
 <div class="card my-5">
     <div class="card-header">
         <h4 class="card-title">Reservations</h4>
@@ -13,13 +26,14 @@
             <table class="table mb-4 table-bordered">
                 <thead>
                     <tr>
-                        <th> @Html.DisplayNameFor(model => model.Id)</th>
-                        <th> @Html.DisplayNameFor(model => model.ArrivalDate)</th>
-                        <th> @Html.DisplayNameFor(model => model.DepartureDate)</th>
-                        <th> @Html.DisplayNameFor(model => model.Adults)</th>
-                        <th> @Html.DisplayNameFor(model => model.Children)</th>
+                        <th> Id</th>
                         <th> Name</th>
-                        <th> @Html.DisplayNameFor(model => model.RoomId)</th>
+                        <th> Arrival Date</th>
+                        <th> Departure Date</th>
+                        <th> Adults</th>
+                        <th> Children</th>
+                        <th> Status</th>
+                        <th> RoomId</th>
                         @*<th> @Html.DisplayNameFor(model => model.BookingStatusId)</th>*@
                         <th>Settings</th>
                     </tr>
@@ -28,19 +42,18 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td > @Html.DisplayFor(modelItem => item.Id)</td>
-                            <td> @Html.DisplayFor(modelItem => item.ArrivalDate)</td>
-                            <td> @Html.DisplayFor(modelItem => item.DepartureDate)</td>
-                            <td> @Html.DisplayFor(modelItem => item.Adults)</td>
-                            <td> @Html.DisplayFor(modelItem => item.Children)</td>
-                            <td> @(item.BookingStatusId ==1 ? "Pending" : "Accepted") </td>
+                            <td > @item.Id</td>
+                            <td>@item.AppUser.UserName</td>
+                            <td> @item.ArrivalDate</td>
+                            <td> @item.DepartureDate</td>
+                            <td> @item.Adults</td>
+                            <td> @item.Children</td>
+                            <td> @(item.BookingStatusId == 1 ? "Pending" : "Accepted") </td>
                             <td>
                                 @item.RoomId
                             </td>
-                            @*<td> @Html.DisplayFor(modelItem => item.BookingStatusId)</td>*@
                             <td class="d-flex p-2">
-                            <a asp-controller="booking" asp-action="detail" asp-route-id="@item.Id"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings text-primary"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
-                            <a asp-controller="booking" asp-action="edit" style="margin-left:10px" asp-route-id="@item.Id"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
+                            <a asp-controller="booking" asp-action="accept" asp-route-id="@item.Id" class="btn btn-success" style="margin-left:10px" >Accept</a>
                             </td>
                         </tr>
                     }
