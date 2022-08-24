@@ -58,7 +58,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("fatimahasanzade307@gmail.com", "Sochi");
+            mail.From = new MailAddress("hesenzadefatime57@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(email));
             mail.Subject = "Reserv testiqlendi";
 
@@ -71,7 +71,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("fatimahasanzade307@gmail.com", "igxdjuerhpzemddc");
+            smtp.Credentials = new NetworkCredential("hesenzadefatime57@gmail.com", "mhugwohxteljkdkr");
             smtp.Send(mail);
         }
 
@@ -94,15 +94,15 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 worksheet.Cell(currentRow, 8).Value = "ReservEndDate";
                 worksheet.Cell(currentRow, 9).Value = "Status";
 
-                worksheet.Cell(currentRow, 1).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 2).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 3).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 4).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 5).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 6).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 7).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 8).Style.Fill.SetBackgroundColor(XLColor.LightGray);
-                worksheet.Cell(currentRow, 9).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 1).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 2).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 3).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 4).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 5).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 6).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 7).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 8).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 9).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
 
 
                 foreach (var report in (await _context.Bookings
