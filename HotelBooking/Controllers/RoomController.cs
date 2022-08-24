@@ -57,7 +57,6 @@ namespace HotelBooking.Controllers
             //ViewBag.CurrentPage = page;
             //List<Room> rooms = await _Include(r => r.RoomPictures).Skip((page-1) * 9).Take(9).ToListAsync();
         }
-
         [HttpGet]
         public async Task<IActionResult> Details(int? id, int page = 1)
         {
@@ -69,18 +68,23 @@ namespace HotelBooking.Controllers
             ViewBag.Rooms = await _context.Rooms.Include(r => r.RoomPictures).ToListAsync();
             RoomVM model = new RoomVM
             {
-                Room = await _context.Rooms.Include(x => x.RoomPictures).Include(x => x.Comments)
-                                           .Include(x => x.RoomAmentiys).ThenInclude(x => x.Amenity)
+                Room = await _context.Rooms.Include(x => x.RoomPictures)
+                                           .Include(x => x.Comments)
+                                           .Include(x => x.RoomAmentiys)
+                                           .ThenInclude(x => x.Amenity)
                                            .FirstOrDefaultAsync(x => x.Id == id),
+
                 Booking = await _context.Bookings.FirstOrDefaultAsync(),
+
                 Comments = await query.Skip((page - 1) * 3).Take(3).Include(p=>p.AppUser).ToListAsync(),
+
                 Comment = await _context.Comments.FirstOrDefaultAsync()
 
             };
             ViewBag.Username = _userManager.GetUserName(HttpContext.User);
             return View(model);
         }
-
+        //reservation
         public async Task<bool> IsReserved(DateTime startDateTime, DateTime EndDateTime, int RoomId)
         {
             var room = await _context
@@ -88,11 +92,9 @@ namespace HotelBooking.Controllers
                 .Where(p => p.Id == RoomId)
                 .Include(p => p.Bookings)
                 .FirstOrDefaultAsync();
-            // var table = await _unitOfWork.tableRepository.GetAsync(p => p.IsDeleted == false && p.Id == RoomId,
-            //     "Reservations");
+           
             if (room.Bookings.Count == 0) return false;
-            // var reservs =
-            //     room.Bookings.Where(p => p.ArrivalDate.Date == startDateTime.Date);
+           
             List<bool> results = new List<bool>();
 
             EndDateTime = EndDateTime.Date;
@@ -150,29 +152,24 @@ namespace HotelBooking.Controllers
 
         }
 
-
+        //reservation
 
         [HttpPost]
         public async Task<IActionResult> Details(int id, Booking booking)
         {
-            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+            AppUser appUser = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
 
             if (appUser == null)
             {
                 return RedirectToAction("login", "Account");
             }
 
-
-
-            //var startTime = booking.ArrivalDate;
-            //var endTime = booking.DepartureDate;
-            //var roomId = booking.RoomId;
-            //var reservs = await _context.Bookings.Where(r => r.RoomId == roomId && r.DepartureDate<).ToListAsync();
-
             var isReserved = await IsReserved(booking.ArrivalDate, booking.DepartureDate, id);
             if (isReserved)
             {
-                return Content("Reserved");
+                TempData["IsReserved"] = true;
+                return RedirectToAction(nameof(Details));
             }
 
             booking.BookingStatusId = 1;
@@ -185,8 +182,7 @@ namespace HotelBooking.Controllers
             return RedirectToAction("Details", "Room");
            
         }
-
-
+        //add comment
         public async Task<IActionResult> Review(int? rid, string Message, int star = 1)
         {
             if (!User.Identity.IsAuthenticated)
@@ -194,8 +190,12 @@ namespace HotelBooking.Controllers
                 return Json(0);
             }
             if (rid == null) return View();
+
             Comment review = new Comment();
-            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+
+            AppUser appUser = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+
             if (appUser is null) return Json(0);
             
             review.Email = appUser.Email;
@@ -204,8 +204,12 @@ namespace HotelBooking.Controllers
             review.Star = star;
             RoomVM roomVM = new RoomVM()
             {
-                Room = await _context.Rooms.FirstOrDefaultAsync(p => p.Id == rid),
-                Comments = await _context.Comments.Where(p => p.RoomId == rid).ToListAsync()
+                Room = await _context.Rooms
+                .FirstOrDefaultAsync(p => p.Id == rid),
+
+                Comments = await _context.Comments.
+                Where(p => p.RoomId == rid)
+                .ToListAsync()
             };
             if (review.Message == null || review.Email == null || review.Name == null) return PartialView("_ReviewStarPartial", roomVM);
 
@@ -220,26 +224,30 @@ namespace HotelBooking.Controllers
             roomVM = new RoomVM()
             {
                 Room = await _context.Rooms.FirstOrDefaultAsync(p => p.Id == rid),
-                Comments = await _context.Comments.Where(p => p.RoomId == rid).ToListAsync()
+
+                Comments = await _context.Comments
+                .Where(p => p.RoomId == rid)
+                .ToListAsync()
             };
             return PartialView("_ReviewStarPartial", roomVM);
         }
 
-
+        //delete comment
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return BadRequest();
 
-            Comment review = await _context.Comments
-                .FirstOrDefaultAsync(r => r.Id == id);
+            Comment review = await _context.Comments.FirstOrDefaultAsync(r => r.Id == id);
             if (review == null) return NotFound();
 
             review.IsDeleted = true;
-            //review.DeletedAt = DateTime.UtcNow.AddHours(4);
              RoomVM roomVM = new RoomVM()
             {
                 Room = await _context.Rooms.FirstOrDefaultAsync(P => P.Id == review.RoomId),
-                Comments = await _context.Comments.Where(p => p.RoomId == review.RoomId && !p.IsDeleted).ToListAsync()
+
+                Comments = await _context.Comments
+                .Where(p => p.RoomId == review.RoomId && !p.IsDeleted)
+                .ToListAsync()
             };
             _context.Comments.Remove(review);
             await _context.SaveChangesAsync();

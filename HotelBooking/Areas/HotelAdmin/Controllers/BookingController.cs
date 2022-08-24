@@ -32,7 +32,9 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Booking> bookings = await _context.Bookings.Include(b => b.AppUser).ToListAsync();
+            List<Booking> bookings = await _context.Bookings
+                .Include(b => b.AppUser)
+                .ToListAsync();
             return View(bookings);
         }
         public async Task<IActionResult> Accept(int id)

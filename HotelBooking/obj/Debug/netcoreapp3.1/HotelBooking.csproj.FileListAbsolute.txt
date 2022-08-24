@@ -222,7 +222,6 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Raz
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Account\Index.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Account\Edit.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Contact\Index.cshtml.g.cs
-C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Contact\Create.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Contact\Delete.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\System.Json.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
