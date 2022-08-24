@@ -147,16 +147,12 @@
                     @foreach (var item in Model.Categories)
                     {
                     <li class="list m-2 @(Model.CategoryId==item.Id ? "active" : "")" data-filter="@item.Name"><a href="@Url.Action("Index","Gallery",new {CategoryId = item.Id})">@item.Name</a></li>
-                        
                     }
-          
                 </ul>
                 <div class="images">
                    @foreach (var item in Model.Galleries)
                     {
-                         if (item.CategoryId ==1)
-                        {
-                              <div class="itemBox @item.Category.Name">
+                        <div class="itemBox @item.Category.Name">
                         <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
                             <img src="~/assets/images/gallery/all/@item.ImagePath" alt="">
                         </a>
@@ -165,33 +161,7 @@
                             <h4>@item.Title</h4>
                         </div>
                     </div>
-                        }
-                         if (item.CategoryId==2)
-                        {
-                              <div class="itemBox @item.Category.Name">
-                        <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
-                            <img src="~/assets/images/gallery/all/@item.ImagePath" alt="">
-                        </a>
-                        <div class="image-detail">
-                            <span>@item.Subtitle</span>
-                            <h4>@item.Title</h4>
-                        </div>
-                    </div>
-                        }
-                          if (item.CategoryId==3)
-                        {
-                              <div class="itemBox @item.Category.Name">
-                        <a href="~/assets/images/gallery/all/@item.ImagePath" data-fancybox="gallery">
-                            <img src="~/assets/images/gallery/all/@item.ImagePath" alt="">
-                        </a>
-                        <div class="image-detail">
-                            <span>@item.Subtitle</span>
-                            <h4>@item.Title</h4>
-                        </div>
-                    </div>
-                        }
                     }
-                
                 </div>
             </div>
         </section>

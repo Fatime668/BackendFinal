@@ -31,6 +31,7 @@ namespace HotelBooking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<LayoutService>();
+            services.AddScoped<IGalleryService,GalleryService>();
 
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(opt =>
@@ -76,7 +77,6 @@ namespace HotelBooking
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-
                 endpoints.MapControllerRoute(
              name: "areas",
              pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
@@ -84,9 +84,6 @@ namespace HotelBooking
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Room}/{action=Index}/{id?}");
             });
         }
     }

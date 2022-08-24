@@ -25,10 +25,9 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            List<AppUser> appUsers = await _context.AppUser.ToListAsync();
-            return View(appUsers);
+            return View(_userManager.Users);
         }
         public async Task<IActionResult> Edit(string id)
         {

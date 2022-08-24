@@ -73,10 +73,11 @@ namespace HotelBooking.Controllers
                                            .Include(x => x.RoomAmentiys).ThenInclude(x => x.Amenity)
                                            .FirstOrDefaultAsync(x => x.Id == id),
                 Booking = await _context.Bookings.FirstOrDefaultAsync(),
-                Comments = await query.Skip((page - 1) * 3).Take(3).ToListAsync(),
+                Comments = await query.Skip((page - 1) * 3).Take(3).Include(p=>p.AppUser).ToListAsync(),
                 Comment = await _context.Comments.FirstOrDefaultAsync()
 
             };
+            ViewBag.Username = _userManager.GetUserName(HttpContext.User);
             return View(model);
         }
 
@@ -195,6 +196,8 @@ namespace HotelBooking.Controllers
             if (rid == null) return View();
             Comment review = new Comment();
             AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+            if (appUser is null) return Json(0);
+            
             review.Email = appUser.Email;
             review.Name = appUser.Firstname + " " + appUser.Lastname;
             review.Message = Message;

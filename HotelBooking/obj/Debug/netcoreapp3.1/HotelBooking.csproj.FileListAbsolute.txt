@@ -242,3 +242,7 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\Mai
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Account\Login.cshtml.g.cs
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\ClosedXML.dll
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll

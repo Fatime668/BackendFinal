@@ -10,10 +10,10 @@ namespace HotelBooking.Controllers
 {
     public class GalleryController : Controller
     {
-        private readonly GalleryService _galleryService;
-        public GalleryController(AppDbContext context)
+        private readonly IGalleryService _galleryService;
+        public GalleryController(IGalleryService galleryService)
         {
-            _galleryService = new GalleryService(context);
+            _galleryService = galleryService;
         }
         public IActionResult Index(int? categoryId)
         {

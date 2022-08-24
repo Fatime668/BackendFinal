@@ -3,24 +3,14 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
 }
-@*
-<form method="post">
-    <div>
-     <label class="mb-3">BookingStatuses:</label><br />
-        <select class="form-control" asp-for="BookingStatusId" asp-items="@(new SelectList(ViewBag.BookingStatuses,"Id","Name"))"></select>
-        <span class="text-danger" asp-validation-for="BookingStatusId"></span>
-    </div>
-    <div>
-          <button type="submit" class="btn btn-outline-success">Accept</button>
-    </div>
-</form>
-*@
-
 <div class="card my-5">
     <div class="card-header">
         <h4 class="card-title">Reservations</h4>
     </div>
     <div class="card-content">
+        <div class="m-3">
+            <a asp-controller="Booking" asp-action="ExportToExcelToday" class="btn btn-lg btn-primary">Export Excel</a>
+        </div>
         <!-- table hover -->
         <div class="table-responsive">
             <table class="table mb-4 table-bordered">
@@ -34,7 +24,6 @@
                         <th> Children</th>
                         <th> Status</th>
                         <th> RoomId</th>
-                        @*<th> @Html.DisplayNameFor(model => model.BookingStatusId)</th>*@
                         <th>Settings</th>
                     </tr>
                 </thead>

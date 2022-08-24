@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class GalleryService
+    public class GalleryService:IGalleryService
     {
         private readonly AppDbContext _context;
 
@@ -38,5 +38,7 @@ namespace Services
             }
             return galleries.ToList();
         }
+
+        
     }
 }
