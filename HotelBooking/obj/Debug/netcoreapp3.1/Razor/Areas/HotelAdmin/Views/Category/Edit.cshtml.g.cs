@@ -26,8 +26,15 @@ using Entities.Concrete;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\user\source\repos\HotelBooking\HotelBooking\Areas\HotelAdmin\Views\_ViewImports.cshtml"
+using HotelBooking.Areas.HotelAdmin.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9621638edccab52ac11e39f6081f6efc357c0011", @"/Areas/HotelAdmin/Views/Category/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dfceae98d38325051b9eb0d52880ac91c5e5cfc3", @"/Areas/HotelAdmin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eb2aaa569df36939bd96bb3a4191b00e6d2867d9", @"/Areas/HotelAdmin/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_HotelAdmin_Views_Category_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Category>
     #nullable disable
@@ -78,7 +85,7 @@ using Entities.Concrete;
 #line hidden
 #nullable disable
             WriteLiteral("<div class=\"my-5\">\r\n    <h1>Edit</h1>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c00116646", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c00116871", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -100,9 +107,9 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c00118269", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c00118494", async() => {
                 WriteLiteral("\r\n    <div>\r\n        <label>Name:</label>\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9621638edccab52ac11e39f6081f6efc357c00118580", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9621638edccab52ac11e39f6081f6efc357c00118805", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -124,7 +131,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("<br />\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c001110181", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c001110406", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -146,7 +153,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    </div>\r\n    <div class=\"d-flex\">\r\n        <div>\r\n            <button class=\"btn  btn-outline-warning\" type=\"submit\">Edit</button>\r\n        </div>\r\n        <div style=\"margin-left:15px\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c001112068", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9621638edccab52ac11e39f6081f6efc357c001112293", async() => {
                     WriteLiteral("Back to list");
                 }
                 );

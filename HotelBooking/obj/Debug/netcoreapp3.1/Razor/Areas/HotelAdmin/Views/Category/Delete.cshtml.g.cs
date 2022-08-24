@@ -26,8 +26,15 @@ using Entities.Concrete;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\user\source\repos\HotelBooking\HotelBooking\Areas\HotelAdmin\Views\_ViewImports.cshtml"
+using HotelBooking.Areas.HotelAdmin.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5c77e9707c9c7475af326a52a1aa94b5489173c5", @"/Areas/HotelAdmin/Views/Category/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dfceae98d38325051b9eb0d52880ac91c5e5cfc3", @"/Areas/HotelAdmin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eb2aaa569df36939bd96bb3a4191b00e6d2867d9", @"/Areas/HotelAdmin/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_HotelAdmin_Views_Category_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Category>
     #nullable disable
@@ -84,7 +91,7 @@ using Entities.Concrete;
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n    </div>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5c77e9707c9c7475af326a52a1aa94b5489173c54656", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5c77e9707c9c7475af326a52a1aa94b5489173c54881", async() => {
                 WriteLiteral("\r\n        <button type=\"submit\" class=\"btn btn-lg btn-outline-danger\">Delete</button>\r\n        <button type=\"submit\" class=\"btn btn-lg btn-outline-dark\">Back To List</button>\r\n    ");
             }
             );

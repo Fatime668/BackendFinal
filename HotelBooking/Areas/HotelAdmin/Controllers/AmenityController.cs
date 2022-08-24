@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using HotelBooking.Extensions;
 using HotelBooking.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
     [Area("HotelAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class AmenityController : Controller
     {
         private readonly AppDbContext _context;

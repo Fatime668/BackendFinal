@@ -26,8 +26,15 @@ using Entities.Concrete;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\user\source\repos\HotelBooking\HotelBooking\Areas\HotelAdmin\Views\_ViewImports.cshtml"
+using HotelBooking.Areas.HotelAdmin.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fce2917c331bb798bb8cf037ad0ef7f8a0623196", @"/Areas/HotelAdmin/Views/SocialMedia/Detail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dfceae98d38325051b9eb0d52880ac91c5e5cfc3", @"/Areas/HotelAdmin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eb2aaa569df36939bd96bb3a4191b00e6d2867d9", @"/Areas/HotelAdmin/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_HotelAdmin_Views_SocialMedia_Detail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<SocialMedia>
     #nullable disable
@@ -93,7 +100,7 @@ using Entities.Concrete;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n        </p>\r\n    </div>\r\n   <div>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fce2917c331bb798bb8cf037ad0ef7f8a06231965716", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fce2917c331bb798bb8cf037ad0ef7f8a06231965941", async() => {
                 WriteLiteral("Back to list");
             }
             );

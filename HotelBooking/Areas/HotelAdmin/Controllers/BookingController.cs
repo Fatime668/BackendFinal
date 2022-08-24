@@ -1,6 +1,7 @@
 ﻿using DataAccess.Data;
 using Entities.Concrete;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
     [Area("HotelAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class BookingController : Controller
     {
         private readonly AppDbContext _context;
@@ -45,7 +47,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             string content = $"Salam {existedbooking.AppUser.UserName} rezerviniz testiq edildi \n" +
                 $"baslangic tarixi: {existedbooking.ArrivalDate.Date} \n" +
                 $"Bitme tarixi: {existedbooking.DepartureDate.Date} \n" +
-                $"Umumi mebleg: {price}";
+                $"Umumi mebleg: {price}$";
             SendMail(existedbooking.AppUser.Email,content);
             return RedirectToAction(nameof(Index));
         }

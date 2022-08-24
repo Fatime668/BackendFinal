@@ -325,5 +325,6 @@ namespace HotelBooking.Controllers
             await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Admin.ToString() });
             await _roleManager.CreateAsync(new  IdentityRole {Name = Roles.SuperAdmin.ToString() });
         }
+        
     }
 }

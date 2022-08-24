@@ -172,7 +172,6 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Raz
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\_ViewImports.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\_ViewStart.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Dashboard\Index.cshtml.g.cs
-C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\AdminAccount\Register.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Views\Gallery\Index.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
 C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Setting\Index.cshtml.g.cs
@@ -242,3 +241,4 @@ C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Raz
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\MailKit.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\user\source\repos\HotelBooking\HotelBooking\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\user\source\repos\HotelBooking\HotelBooking\obj\Debug\netcoreapp3.1\Razor\Areas\HotelAdmin\Views\Account\Login.cshtml.g.cs

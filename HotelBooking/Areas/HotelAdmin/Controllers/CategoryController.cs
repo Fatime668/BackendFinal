@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
     [Area("HotelAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;

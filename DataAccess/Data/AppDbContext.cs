@@ -16,7 +16,8 @@ namespace DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Setting
-            modelBuilder.Entity<Setting>().HasData(new Setting { Id = 1, Key = "HeaderWhiteLogo", Value = "logo-white.svg" },
+            modelBuilder.Entity<Setting>().HasData(
+                new Setting { Id = 1, Key = "HeaderWhiteLogo", Value = "logo-white.svg" },
                 new Setting { Id = 2, Key = "HeaderBlackLogo", Value = "logo-black.svg" },
                 new Setting { Id = 3, Key = "StreetAddress", Value = "23400 S Western Ave," },
                 new Setting { Id = 4, Key = "CityAddress", Value = "Harbor City, CA 90710" },
