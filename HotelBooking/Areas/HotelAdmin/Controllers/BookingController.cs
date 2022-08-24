@@ -45,25 +45,43 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 .FirstOrDefaultAsync();
             existedbooking.BookingStatusId = 2;
             await _context.SaveChangesAsync();
+           
+
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader("wwwroot/admin/reservcomfirmed/index.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+
             var price = (existedbooking.DepartureDate - existedbooking.ArrivalDate).Days * existedbooking.Room.Price;
-            string content = $"Salam {existedbooking.AppUser.UserName} rezerviniz testiq edildi \n" +
-                $"baslangic tarixi: {existedbooking.ArrivalDate.Date} \n" +
-                $"Bitme tarixi: {existedbooking.DepartureDate.Date} \n" +
-                $"Umumi mebleg: {price}$";
-            SendMail(existedbooking.AppUser.Email, content);
+            var user = existedbooking.AppUser.Firstname + " " + existedbooking.AppUser.Lastname;
+            var startdate = existedbooking.ArrivalDate.Date;
+            var enddate = existedbooking.DepartureDate.Date;
+            var adult = existedbooking.Adults;
+            var children = existedbooking.Children;
+
+            body = body.Replace("{{price}}", price.ToString());
+            body = body.Replace("{{user}}", user);
+            body = body.Replace("{{startdate}}", startdate.ToString());
+            body = body.Replace("{{enddate}}", enddate.ToString());
+            body = body.Replace("{{adult}}", adult.ToString());
+            body = body.Replace("{{children}}", children.ToString());
+
+            SendMail(existedbooking.AppUser.Email, body);
             return RedirectToAction(nameof(Index));
         }
         [NonAction]
-        public void SendMail(string email, string content)
+        public void SendMail(string email, string body)
         {
 
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("hesenzadefatime57@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(email));
-            mail.Subject = "Reserv testiqlendi";
+            mail.Subject = "Reserviniz testiq olundu!";
 
 
-            mail.Body = content;
+
+            mail.Body = body;
 
             mail.IsBodyHtml = true;
 
@@ -94,15 +112,15 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 worksheet.Cell(currentRow, 8).Value = "ReservEndDate";
                 worksheet.Cell(currentRow, 9).Value = "Status";
 
-                worksheet.Cell(currentRow, 1).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 2).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 3).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 4).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 5).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 6).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 7).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 8).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
-                worksheet.Cell(currentRow, 9).Style.Fill.SetBackgroundColor(XLColor.LightPastelPurple);
+                worksheet.Cell(currentRow, 1).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 2).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 3).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 4).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 5).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 6).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 7).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 8).Style.Fill.SetBackgroundColor(XLColor.LightGray);
+                worksheet.Cell(currentRow, 9).Style.Fill.SetBackgroundColor(XLColor.LightGray);
 
 
                 foreach (var report in (await _context.Bookings
