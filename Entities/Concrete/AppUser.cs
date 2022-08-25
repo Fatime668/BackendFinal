@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Entities.Enums;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class AppUser:IdentityUser
+    public class AppUser : IdentityUser
     {
-        [Required,StringLength(maximumLength:15)]
+        [Required, StringLength(maximumLength: 15)]
         public string Firstname { get; set; }
         [Required, StringLength(maximumLength: 15)]
         public string Lastname { get; set; }

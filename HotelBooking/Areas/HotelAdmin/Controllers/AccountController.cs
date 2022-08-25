@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
     [Area("HotelAdmin")]
+
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
@@ -25,11 +26,12 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public IActionResult Index()
         {
             return View(_userManager.Users.Where(p=>p.IsAdmin==false));
         }
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> IsBlock(string id)
         {
             if (!ModelState.IsValid) return View();
@@ -122,7 +124,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             };
             await _userManager.CreateAsync(appUser, "fatima123a");
             await _userManager.AddToRoleAsync(appUser, Roles.SuperAdmin.ToString());
-            return Content("Super Admin Was Successfully Created");
+            return Content("Super Admin successfully created");
         }
     }
 }

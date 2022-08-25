@@ -120,13 +120,11 @@ namespace HotelBooking.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> ForgotPassword(AccountVM account)
         {
-            if (!ModelState.IsValid) return View();
-            
             AppUser user = await _userManager.FindByEmailAsync(account.AppUser.Email);
             if (user == null) return BadRequest();
             TempData["ForgotPassword"] = true;
             string token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            string link = Url.Action(nameof(ResetPassword),"Account",new {email = user.Email,token },Request.Scheme,Request.Host.ToString());
+            string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(user.Email));
@@ -164,7 +162,8 @@ namespace HotelBooking.Controllers
         public async Task<IActionResult> ResetPassword(AccountVM account)
         {
             AppUser user = await _userManager.FindByEmailAsync(account.AppUser.Email);
-
+            if (user == null) return View();
+            
             AccountVM model = new AccountVM
             {
                 AppUser = user,
@@ -213,7 +212,7 @@ namespace HotelBooking.Controllers
                         {
                             if (result.IsLockedOut)
                             {
-                                ModelState.AddModelError("", "Due to overtrying you have been blocked about 10 minutes");
+                                ModelState.AddModelError("", "You have been for dismissed 5 minutes");
                                 return View();
                             }
                             ModelState.AddModelError("", "Username or password is incorrect");
@@ -319,12 +318,12 @@ namespace HotelBooking.Controllers
         {
             return Content(User.Identity.IsAuthenticated.ToString());
         }
-        public async Task CreateRoles()
-        {
-            await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Member.ToString() });
-            await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Admin.ToString() });
-            await _roleManager.CreateAsync(new  IdentityRole {Name = Roles.SuperAdmin.ToString() });
-        }
+        //public async Task CreateRoles()
+        //{
+        //    await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Member.ToString() });
+        //    await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Admin.ToString() });
+        //    await _roleManager.CreateAsync(new  IdentityRole {Name = Roles.SuperAdmin.ToString() });
+        //}
         
     }
 }
