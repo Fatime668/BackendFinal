@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using Entities.Concrete;
+using HotelBooking.Helper;
 using HotelBooking.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -318,12 +319,12 @@ namespace HotelBooking.Controllers
         {
             return Content(User.Identity.IsAuthenticated.ToString());
         }
-        //public async Task CreateRoles()
-        //{
-        //    await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Member.ToString() });
-        //    await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Admin.ToString() });
-        //    await _roleManager.CreateAsync(new  IdentityRole {Name = Roles.SuperAdmin.ToString() });
-        //}
+        public async Task CreateRoles()
+        {
+            await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Member.ToString() });
+            await _roleManager.CreateAsync(new  IdentityRole {Name =  Roles.Admin.ToString() });
+            await _roleManager.CreateAsync(new  IdentityRole {Name = Roles.SuperAdmin.ToString() });
+        }
         
     }
 }

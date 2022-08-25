@@ -1,5 +1,6 @@
 ﻿using Entities.Concrete;
 using HotelBooking.Areas.HotelAdmin.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
     [Area("HotelAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -56,7 +58,8 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             var model = new List<ManageUserRoleVM>();
             foreach (var role in _roleManager.Roles.ToList())
             {
-                var userRolesViewModel = new ManageUserRoleVM                {
+                var userRolesViewModel = new ManageUserRoleVM
+                {
                     RoleId = role.Id,
                     RoleName = role.Name
                 };

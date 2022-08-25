@@ -1,6 +1,7 @@
 ﻿using DataAccess.Data;
 using Entities.Concrete;
 using HotelBooking.Areas.HotelAdmin.ViewModels;
+using HotelBooking.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
