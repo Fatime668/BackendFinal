@@ -1,13 +1,10 @@
 ﻿using ClosedXML.Excel;
 using DataAccess.Data;
 using Entities.Concrete;
-using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MimeKit;
-using MimeKit.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -77,7 +74,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hesenzadefatime57@gmail.com", "Sochi");
+            mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(email));
             mail.Subject = "Reserviniz testiq olundu!";
 
@@ -91,7 +88,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("hesenzadefatime57@gmail.com", "mhugwohxteljkdkr");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
             smtp.Send(mail);
         }
 

@@ -72,7 +72,7 @@ namespace HotelBooking.Controllers
             string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hesenzadefatime57@gmail.com", "Sochi");
+            mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(user.Email));
             mail.Subject = "Verify Email";
             string body = string.Empty;
@@ -91,7 +91,7 @@ namespace HotelBooking.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("hesenzadefatime57@gmail.com", "mhugwohxteljkdkr");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
             smtp.Send(mail);
             TempData["Verify"] = true;
 
@@ -128,7 +128,7 @@ namespace HotelBooking.Controllers
             string token = await _userManager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword),"Account",new {email = user.Email,token },Request.Scheme,Request.Host.ToString());
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hesenzadefatime57@gmail.com", "Sochi");
+            mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(user.Email));
             mail.Subject = "Reset Password";
             string body = string.Empty;
@@ -144,7 +144,7 @@ namespace HotelBooking.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("hesenzadefatime57@gmail.com", "mhugwohxteljkdkr");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
             smtp.Send(mail);
             return RedirectToAction("Index", "Home");
         }

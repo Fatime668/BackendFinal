@@ -27,40 +27,28 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_userManager.Users);
+            return View(_userManager.Users.Where(p=>p.IsAdmin==false));
         }
-        public async Task<IActionResult> Edit(string id)
-        {
-            AppUser existedUser = await _context.AppUser.FirstOrDefaultAsync(a => a.Id == id);
-            if (existedUser == null) return NotFound();
 
-            return View(existedUser);
-        }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit(AppUser appUser)
+        public async Task<IActionResult> IsBlock(string id)
         {
             if (!ModelState.IsValid) return View();
-            AppUser existedUser = await _context.AppUser.FirstOrDefaultAsync(s => s.Id == appUser.Id);
+            AppUser existedUser = await _context.AppUser.FirstOrDefaultAsync(s => s.Id == id);
             if (existedUser == null) return NotFound();
-
-            existedUser.UserName = appUser.UserName;
-            existedUser.Firstname = appUser.Firstname;
-            existedUser.Lastname = appUser.Lastname;
-            if (appUser.IsBlock == true)
+            if (existedUser.IsBlock == false)
             {
+                existedUser.IsBlock = true;
                 await _signInManager.SignOutAsync();
-                existedUser.IsBlock = true;
             }
-            else if (appUser.IsBlock == false)
+            else if (existedUser.IsBlock == true)
             {
-                existedUser.IsBlock = true;
+                existedUser.IsBlock = false;
+                await _signInManager.SignInAsync(existedUser,false);
             }
-            existedUser.IsBlock = appUser.IsBlock;
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         public IActionResult Login()
         {
             return View();
@@ -120,21 +108,21 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             return RedirectToAction("Index", "Home");
         }
         //Create Admin
-        //public async Task<IActionResult> CreateAdmin()
-        //{
-        //    AppUser appUser = new AppUser
-        //    {
-        //        Email = "tu7dkjdue@code.edu.az",
-        //        UserName = "fatimacode",
-        //        Firstname = "Fatima",
-        //        Lastname = "Hasanzade",
-        //        PhoneNumber = "0555555555",
-        //        EmailConfirmed = true,
-        //        IsAdmin = true,
-        //    };
-        //    await _userManager.CreateAsync(appUser, "fatima123a");
-        //    await _userManager.AddToRoleAsync(appUser, Roles.SuperAdmin.ToString());
-        //    return Content("Super Admin Was Successfully Created");
-        //}
+        public async Task<IActionResult> CreateAdmin()
+        {
+            AppUser appUser = new AppUser
+            {
+                Email = "tu7dkjdue@code.edu.az",
+                UserName = "fatimacode",
+                Firstname = "Fatima",
+                Lastname = "Hasanzade",
+                PhoneNumber = "0555555555",
+                EmailConfirmed = true,
+                IsAdmin = true,
+            };
+            await _userManager.CreateAsync(appUser, "fatima123a");
+            await _userManager.AddToRoleAsync(appUser, Roles.SuperAdmin.ToString());
+            return Content("Super Admin Was Successfully Created");
+        }
     }
 }
