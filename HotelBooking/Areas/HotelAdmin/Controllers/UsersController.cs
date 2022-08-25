@@ -34,6 +34,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 thisViewModel.Firstname = user.Firstname;
                 thisViewModel.Lastname = user.Lastname;
                 thisViewModel.Username = user.UserName;
+                thisViewModel.Email = user.Email;
                 thisViewModel.Roles = await GetUserRoles(user);
                 userRolesVM.Add(thisViewModel);
             }

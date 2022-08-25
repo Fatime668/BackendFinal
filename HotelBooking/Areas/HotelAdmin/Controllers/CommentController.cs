@@ -23,33 +23,22 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             List<Comment> comments = await _context.Comments.ToListAsync();
             return View(comments);
         }
-        public async Task<IActionResult> Edit(int id)
-        {
-            Comment comment = await _context.Comments.FirstOrDefaultAsync(s => s.Id == id);
-            if (comment == null) return NotFound();
-
-            return View(comment);
-        }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit(int id, Comment comment)
+        public async Task<IActionResult> LikeComment(int id)
         {
             Comment existed = await _context.Comments.FirstOrDefaultAsync(s => s.Id == id);
             if (existed == null) return NotFound();
-            _context.Entry(existed).CurrentValues.SetValues(comment);
+            if (existed.Status == false)
+            {
+                existed.Status = true;
+            }
+            else
+            {
+                existed.Status = false;
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Delete(int id)
-        {
-            Comment comment = await _context.Comments.FirstOrDefaultAsync(s => s.Id == id);
-            if (comment == null) return NotFound();
-
-            return View(comment);
-        }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        [ActionName("Delete")]
         public async Task<IActionResult> DeleteComment(int id)
         {
             Comment comment = await _context.Comments.FirstOrDefaultAsync(s => s.Id == id);

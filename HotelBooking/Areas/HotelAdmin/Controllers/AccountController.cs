@@ -27,12 +27,12 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        [Authorize(Roles = "Admin,SuperAdmin")]
+        //[Authorize(Roles = "Admin,SuperAdmin")]
         public IActionResult Index()
         {
-            return View(_userManager.Users.Where(p=>p.IsAdmin==false));
+            return View(_userManager.Users);
         }
-        [Authorize(Roles = "Admin,SuperAdmin")]
+        //[Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> IsBlock(string id)
         {
             if (!ModelState.IsValid) return View();

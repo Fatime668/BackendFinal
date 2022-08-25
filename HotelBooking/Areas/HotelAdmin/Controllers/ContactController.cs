@@ -23,16 +23,6 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             List<Contact> contacts = await _context.Contacts.ToListAsync();
             return View(contacts);
         }
-        public async Task<IActionResult> Delete(int id)
-        {
-            Contact contact = await _context.Contacts.FirstOrDefaultAsync(s => s.Id == id);
-            if (contact == null) return NotFound();
-           
-            return View(contact);
-        }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        [ActionName("Delete")]
         public async Task<IActionResult> DeleteEmail(int id)
         {
             Contact contact = await _context.Contacts.FirstOrDefaultAsync(s => s.Id == id);
