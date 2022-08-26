@@ -233,26 +233,26 @@ namespace HotelBooking.Controllers
         }
 
         //delete comment
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null) return BadRequest();
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null) return BadRequest();
 
-            Comment review = await _context.Comments.FirstOrDefaultAsync(r => r.Id == id);
-            if (review == null) return NotFound();
+        //    Comment review = await _context.Comments.FirstOrDefaultAsync(r => r.Id == id);
+        //    if (review == null) return NotFound();
 
-            review.IsDeleted = true;
-             RoomVM roomVM = new RoomVM()
-            {
-                Room = await _context.Rooms.FirstOrDefaultAsync(P => P.Id == review.RoomId),
+        //    review.IsDeleted = true;
+        //     RoomVM roomVM = new RoomVM()
+        //    {
+        //        Room = await _context.Rooms.FirstOrDefaultAsync(P => P.Id == review.RoomId),
 
-                Comments = await _context.Comments
-                .Where(p => p.RoomId == review.RoomId && !p.IsDeleted)
-                .ToListAsync()
-            };
-            _context.Comments.Remove(review);
-            await _context.SaveChangesAsync();
+        //        Comments = await _context.Comments
+        //        .Where(p => p.RoomId == review.RoomId && !p.IsDeleted)
+        //        .ToListAsync()
+        //    };
+        //    _context.Comments.Remove(review);
+        //    await _context.SaveChangesAsync();
            
-            return PartialView("_ReviewStarPartial", roomVM);
-        }
+        //    return PartialView("_ReviewStarPartial", roomVM);
+        //}
     }
 }

@@ -95,8 +95,7 @@
 
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Sales</span></li>
+                                <li class="breadcrumb-item"><a asp-controller="dashboard" asp-action="index" >Dashboard</a></li>
                             </ol>
                         </nav>
 
@@ -131,7 +130,7 @@
                         </a>
                         <ul class="collapse submenu list-unstyled show" id="dashboard" data-parent="#accordionExample">
                             <li class="active">
-                                <a href="index-2.html"> Sales </a>
+                                <a asp-controller="Dashboard" asp-action="Index"> Diagram </a>
                             </li>
                         </ul>
                     </li>

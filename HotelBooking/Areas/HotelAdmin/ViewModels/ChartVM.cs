@@ -1,12 +1,13 @@
 ﻿using Entities.Concrete;
+using System.Collections.Generic;
 
 namespace HotelBooking.Areas.HotelAdmin.ViewModels
 {
     public class ChartVM
     {
-        public Room Room { get; set; }
-        public Comment Comment { get; set; }
-        public AppUser AppUser { get; set; }
-        public Booking Booking { get; set; }
+        public List<Room> Rooms { get; set; }
+        public List<Comment> Comments { get; set; }
+        public List<AppUser> AppUsers { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }

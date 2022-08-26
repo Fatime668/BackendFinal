@@ -541,16 +541,16 @@
             })
         })
         //delete comment
-        $(document).on("click", ".deletecommentprod", function(e) {
-            e.preventDefault();
-            var id = $(this).attr("data-id");
-            var bid = $(this).attr("data-bid");
-            fetch("/Room/Delete" + "?id=" + id).then(res => {
-                return res.text();
-            }).then(data => {
-                $(".all-reviews").html(data);
-            })
-        })
+        //$(document).on("click", ".deletecommentprod", function(e) {
+        //    e.preventDefault();
+        //    var id = $(this).attr("data-id");
+        //    var bid = $(this).attr("data-bid");
+        //    fetch("/Room/Delete" + "?id=" + id).then(res => {
+        //        return res.text();
+        //    }).then(data => {
+        //        $(".all-reviews").html(data);
+        //    })
+        //})
         //toastrJS
         $(document).ready(function() {
             if ($("#bookingJs").length) {

@@ -1,8 +1,18 @@
-﻿
-@model List<Booking>
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<Booking>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
+}
+@section Links{
+    <style>
+        .pointerEvent{
+            pointer-events:none;
+            background-color:gray;
+            border:none
+        }
+    </style>
 }
 <div class="card my-5">
     <div class="card-header">
@@ -61,8 +71,9 @@
                                 @item.RoomId
                             </td>
                             <td class="d-flex p-2">
-                                <a asp-controller="booking" asp-action="accept" asp-route-id="@item.Id" class="btn btn-success" style="margin-left:10px">Accept</a>
-                                <a asp-controller="booking" asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger" style="margin-left:10px">Delete</a>
+                                <a asp-controller="booking" asp-action="accept" asp-route-id="@item.Id" class="btn btn-success " style="margin-left:10px">Accept</a>
+                                <a asp-controller="booking" asp-action="cancel" asp-route-id="@item.Id" class="btn btn-warning " style="margin-left:10px">Cancel</a>
+                                <a asp-controller="booking" asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger " style="margin-left:10px">Delete</a>
                             </td>
                         </tr>
                     }
@@ -71,4 +82,8 @@
         </div>
     </div>
 </div>
-
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),new X.PagedList.Web.Common.PagedListRenderOptionsBase
+    {
+    LiElementClasses=new[] {"page-item"},
+    PageClasses = new[] {"page-link"}
+    })

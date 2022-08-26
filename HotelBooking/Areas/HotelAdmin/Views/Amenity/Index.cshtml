@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Amenity>
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<Amenity>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
@@ -23,9 +25,9 @@
             <table id="myTable"  class="table table-hover table-light mb-4">
                 <thead>
                     <tr>
-                        <th> @Html.DisplayNameFor(model => model.Id)</th>
-                        <th> @Html.DisplayNameFor(model => model.Name)</th>
-                        <th> @Html.DisplayNameFor(model => model.ImageUrl)</th>
+                        <th> Id</th>
+                        <th> Name</th>
+                        <th> ImageUrl</th>
                         <th>Settings</th>
                     </tr>
                 </thead>
@@ -49,10 +51,8 @@
         </div>
     </div>
 </div>
-@section Scripts{
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
-}
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),new X.PagedList.Web.Common.PagedListRenderOptionsBase
+    {
+    LiElementClasses=new[] {"page-item"},
+    PageClasses = new[] {"page-link"}
+    })

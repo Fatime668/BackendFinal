@@ -37,6 +37,8 @@ namespace Entities.Concrete
         [NotMapped]
         public List<IFormFile> AnotherImages { get; set; }
         [NotMapped]
+        public int? ImageId { get; set; }
+        [NotMapped]
         public List<int> ImageIds { get; set; }
         [NotMapped]
         public List<int> AmenityIds { get; set; }

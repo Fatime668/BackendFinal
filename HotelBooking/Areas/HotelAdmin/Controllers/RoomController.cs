@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 //using X.PagedList;
 
 namespace HotelBooking.Areas.HotelAdmin.Controllers
@@ -29,8 +30,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
             List<Room> rooms = await _context.Rooms.Include(r => r.RoomPictures)
                 .ToListAsync();
-            return View(rooms);
-            //.ToPagedList(page, 5)
+            return View(rooms.ToPagedList(page, 5));
         }
         public async Task<IActionResult> Create()
         {
@@ -134,6 +134,11 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 ModelState.AddModelError("", "You can not delete all images without adding another image");
                 return View(existed);
             }
+            if (room.ImageId == null && room.MainImage == null)
+            {
+                ModelState.AddModelError("", "It is not possible to delete another images without adding a new one!");
+                return View(existed);
+            }
             if ((room.NoOfBed >8 || room.NoOfBed<0) )
             {
                 ModelState.AddModelError("", "You can enter a number between 1 and 8");
@@ -144,9 +149,31 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 ModelState.AddModelError("", "You can enter a number between 1 and 8");
                 return View(existed);
             }
-            List<RoomPicture> removableImages = existed.RoomPictures.Where(r => r.IsMain == false && !room.ImageIds.Contains(r.Id)).ToList();
-            existed.RoomPictures.RemoveAll(r => removableImages.Any(ri => ri.Id == r.Id));
+            List<RoomPicture> removeableImages;
+            if (room.ImageIds != null)
+            {
+                removeableImages = existed.RoomPictures.Where(p => p.IsMain == false && !room.ImageIds.Contains(p.Id)).ToList();
+            }
+            else
+            {
+                removeableImages = existed.RoomPictures.Where(p => p.IsMain == false).ToList();
+            }
 
+            existed.RoomPictures.RemoveAll(p => removeableImages.Any(ri => ri.Id == p.Id));
+
+            if (room.ImageId == null)
+            {
+                RoomPicture removeableImage = existed.RoomPictures.FirstOrDefault(p => p.IsMain == true);
+
+                if (removeableImage != null)
+                {
+
+                    existed.RoomPictures.Remove(removeableImage);
+                    FileUtilities.FileDelete(_env.WebRootPath, @"assets\images\rooms", removeableImage.ImagePath);
+                }
+
+            }
+            
             List<RoomAmentiy> removableAmenities = existed.RoomAmentiys.Where(r => !room.AmenityIds.Contains(r.AmenityId)).ToList();
             existed.RoomAmentiys.RemoveAll(ra => removableAmenities.Any(rm => rm.Id == ra.Id));
 
@@ -163,12 +190,25 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                     existed.RoomAmentiys.Add(roomAmentiy);
                 }
             }
-            foreach (var image in removableImages)
+            foreach (var image in removeableImages)
             {
                 FileUtilities.FileDelete(_env.WebRootPath, @"assets\images\rooms", image.ImagePath);
             }
-            if (room.AnotherImages != null)
+
+            if (room.MainImage != null)
             {
+                RoomPicture mainRoomImage = new RoomPicture
+                {
+                    ImagePath = await room.MainImage.FileCreate(_env.WebRootPath, @"assets\images\rooms"),
+                    IsMain = true,
+                    RoomId = existed.Id
+                };
+                existed.RoomPictures.Add(mainRoomImage);
+            }
+
+
+            if (room.AnotherImages != null)
+            {   
                 foreach (var image in room.AnotherImages)
                 {
                     RoomPicture roomPicture = new RoomPicture

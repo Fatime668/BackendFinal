@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Comment>
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<Comment>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
@@ -15,14 +17,14 @@
             <table class="table mb-4 table-bordered">
                 <thead>
                     <tr>
-                        <th> @Html.DisplayNameFor(model => model.Id)</th>
-                        <th> @Html.DisplayNameFor(model => model.Name)</th>
-                        <th> @Html.DisplayNameFor(model => model.Email)</th>
-                        <th> @Html.DisplayNameFor(model => model.Message)</th>
-                        <th> @Html.DisplayNameFor(model => model.CreatedDate)</th>
-                        <th> @Html.DisplayNameFor(model => model.Star)</th>
-                        <th> @Html.DisplayNameFor(model => model.RoomId)</th>
-                        <th> @Html.DisplayNameFor(model => model.Status)</th>
+                        <th> Id</th>
+                        <th> Name</th>
+                        <th> Email</th>
+                        <th> Message</th>
+                        <th> CreatedDate</th>
+                        <th> Star</th>
+                        <th> RoomId</th>
+                        <th> Status</th>
                         <th>Settings</th>
                     </tr>
                 </thead>
@@ -74,3 +76,8 @@
     </div>
 </div>
 
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),new X.PagedList.Web.Common.PagedListRenderOptionsBase
+    {
+    LiElementClasses=new[] {"page-item"},
+    PageClasses = new[] {"page-link"}
+    })

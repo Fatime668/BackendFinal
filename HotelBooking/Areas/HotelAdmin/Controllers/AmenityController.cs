@@ -9,6 +9,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
@@ -24,10 +25,10 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _context = context;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             List<Amenity> amenities = await _context.Amenities.ToListAsync();
-            return View(amenities);
+            return View(amenities.ToPagedList(page, 5));
         }
         public IActionResult Create()
         {

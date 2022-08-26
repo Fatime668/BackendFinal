@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using Entities.Concrete;
+using HotelBooking.Areas.HotelAdmin.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,15 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            ChartVM model = new ChartVM
+            {
+                AppUsers = await _context.AppUser.ToListAsync(),
+                Bookings = await _context.Bookings.ToListAsync(),
+                Rooms = await _context.Rooms.ToListAsync()
+            };
+            return View(model);
         }
 
 

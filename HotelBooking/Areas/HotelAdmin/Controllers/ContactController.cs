@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
@@ -18,10 +19,10 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             List<Contact> contacts = await _context.Contacts.ToListAsync();
-            return View(contacts);
+            return View(contacts.ToPagedList(page, 5));
         }
         public async Task<IActionResult> DeleteEmail(int id)
         {

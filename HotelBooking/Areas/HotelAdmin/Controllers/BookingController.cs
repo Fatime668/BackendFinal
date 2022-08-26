@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
@@ -27,12 +28,14 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             List<Booking> bookings = await _context.Bookings
                 .Include(b => b.AppUser)
+                .Include(b=>b.Status)
+                .Where(b=>b.Status.Status != "Delete")
                 .ToListAsync();
-            return View(bookings);
+            return View(bookings.ToPagedList(page, 5));
         }
         //AcceptReservation
 
@@ -41,7 +44,6 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             Booking existedbooking = await _context
                 .Bookings
                 .Where(s => s.Id == id)
-                .Include(s => s.AppUser)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync();
             existedbooking.BookingStatusId = 2;
@@ -71,6 +73,21 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             SendMail(existedbooking.AppUser.Email, body);
             return RedirectToAction(nameof(Index));
         }
+        //CancelReservation
+        public async Task<IActionResult> Cancel(int id)
+        {
+            Booking existedbooking = await _context
+               .Bookings
+               .Where(s => s.Id == id)
+               .Include(s => s.AppUser)
+               .Include(s => s.Room)
+               .FirstOrDefaultAsync();
+            existedbooking.BookingStatusId = 2;
+            string body = string.Empty;
+            CancelSendMail(existedbooking.AppUser.Email, body);
+            return RedirectToAction(nameof(Index));
+        }
+
 
         //DeleteReservation
         public async Task<IActionResult> Delete(int id)
@@ -86,7 +103,28 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+        [NonAction]
+        public void CancelSendMail(string email, string body)
+        {
 
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
+            mail.To.Add(new MailAddress(email));
+            mail.Subject = "Reservasiyaniz legv olundu!";
+
+
+
+            mail.Body = body;
+
+            mail.IsBodyHtml = true;
+
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
+            smtp.Send(mail);
+        }
         [NonAction]
         public void SendMail(string email, string body)
         {
