@@ -34,11 +34,7 @@ namespace HotelBooking.Controllers
         }
         public async Task<IActionResult> Index(int? roomTypeId, int? minPrice, int? maxPrice, int? sortBy)
         {
-            //if ( page == 0) return NotFound();
-            //var query = _context.Rooms.AsQueryable();
-            //ViewBag.TotalPage = Math.Ceiling(((decimal)await query.CountAsync()) / 9);
-            //ViewBag.CurrentPage = page;
-            //ViewBag.Rooms = await _context.Rooms.Include(r => r.RoomPictures).Include(r => r.Comments).ToListAsync();
+            
             RoomFilterVM filterVM = new RoomFilterVM
             {
                 Rooms = _roomService.SearchRoomFilter(roomTypeId, minPrice, maxPrice, sortBy),
@@ -53,9 +49,6 @@ namespace HotelBooking.Controllers
             return View(filterVM);
 
 
-            //ViewBag.TotalPage = Math.Ceiling(((decimal)await _roomService.Count()) / 9);
-            //ViewBag.CurrentPage = page;
-            //List<Room> rooms = await _Include(r => r.RoomPictures).Skip((page-1) * 9).Take(9).ToListAsync();
         }
         [HttpGet]
         public async Task<IActionResult> Details(int? id, int page = 1)

@@ -18,7 +18,8 @@
         .box {
             width: 100%;
             background-color: white;
-            border-radius: 5px;
+            border-radius: 50%;
+            padding:50px
         }
 
             .box h5 {
@@ -38,6 +39,9 @@
             p{
                 color:#000;
             }
+            h5{
+                color:#000;
+            }
     </style>
 }
  
@@ -46,26 +50,26 @@
         <div class="container">
             <div class="row mt-5 text-center d-flex justify-content-center">
                 <div>
-                    <h3 style="color:black" class="mt-4">LibSchool saytının reytinqi</h3>
+                    <h3 style="color:#fff" class="mt-4">Statistika</h3>
                 </div>
-                <div class="col-lg-12 p-4 text-center d-flex justify-content-center" style="background-color:#8E44AD;border-radius: 8px;">
+                <div class="col-lg-12 p-4 text-center d-flex justify-content-center" style="background-color:#61B6B6;border-radius: 15px;height:100%">
 
                     <div class="col-lg-3 mt-5">
-                        <div class="box p-1">
-                            <h5 class="counter" data-target="@Model.AppUsers.Count"></h5>
+                        <div class="box ">
+                            <h5 class="counter" data-target="@Model.AppUsers.Count"><span>+</span> </h5>
                             <p> <i class="fa-solid fa-users"></i> Users</p>
                         </div>
                     </div>
                     <div class="col-lg-3 mt-5">
-                        <div class="box p-1">
-                            <h5 class="counter" data-target="@Model.Bookings.Count"></h5>
+                        <div class="box">
+                            <h5 class="counter" data-target="@Model.Bookings.Count"><span>+</span> </h5>
                             <p> <i class="fa-solid fa-calendar-check"></i> Reservations</p>
                         </div>
                     </div>
                     <div class="col-lg-3 mt-5">
-                        <div class="box p-1">
-                            <h5 class="counter" data-target="@Model.Rooms.Count"></h5>
-                            <p> <i class="fa-solid fa-right-to-bracket"></i> Rooms</p>
+                        <div class="box ">
+                            <h5 class="counter" data-target="@Model.Rooms.Where(p=>p.IsAcive==true).Count()"><span>+</span> </h5>
+                            <p> <i class="fa-solid fa-hotel"></i>Rooms</p>
                         </div>
                     </div>
                 </div>

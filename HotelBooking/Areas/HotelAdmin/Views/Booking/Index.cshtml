@@ -60,11 +60,17 @@
                                     Accepted
                                 </td>
                             }
-                            else
+                            else if(item.BookingStatusId == 3)
                             {
-                            <td>
-                                Deleted
-                            </td>
+                                <td>
+                                    Deleted
+                                </td>
+                            }
+                            else if(item.BookingStatusId == 4  )
+                            {
+                                <td>
+                                    Cancelled
+                                </td>
                             }
 
                             <td>

@@ -45,6 +45,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 .Bookings
                 .Where(s => s.Id == id)
                 .Include(s => s.Room)
+                .Include(p=>p.AppUser)
                 .FirstOrDefaultAsync();
             existedbooking.BookingStatusId = 2;
             await _context.SaveChangesAsync();
@@ -82,7 +83,8 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                .Include(s => s.AppUser)
                .Include(s => s.Room)
                .FirstOrDefaultAsync();
-            existedbooking.BookingStatusId = 2;
+            existedbooking.BookingStatusId = 4;
+            await _context.SaveChangesAsync();
             string body = string.Empty;
             CancelSendMail(existedbooking.AppUser.Email, body);
             return RedirectToAction(nameof(Index));

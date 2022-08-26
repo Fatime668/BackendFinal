@@ -151,7 +151,6 @@
                                 <li><a class="active" href="/room/index">Rooms</a></li>
                                 <li class="ms-4"><a href="/gallery/index">Gallery</a></li>
                                 <li class="ms-4"><a href="/about/index">About Us</a></li>
-                                <li class="ms-4"><a href="/blog/index">Blog</a></li>
                                 <li class="ms-4"><a href="/contact/index">Contact Us</a></li>
                             </ul>
                         </div>
@@ -269,7 +268,7 @@
                                         <div class="img">
                                             <a href="/room/details/@room.Id">
                                                 <div class="bg-color"></div>
-                                                <img src="~/assets/images/roomItem/@room.RoomPictures.FirstOrDefault(r=>r.IsMain==true).ImagePath" alt="">
+                                                <img src="~/assets/images/rooms/@room.RoomPictures.FirstOrDefault(r=>r.IsMain==true).ImagePath" alt="">
                                             </a>
                                             <div class="room-detail">
                                                 <h4>@room.Title</h4>
@@ -308,18 +307,7 @@
                     }
 
                 </div>
-                <div class="pagination">
-                    <a asp-controller="room" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)" class="prev @(ViewBag.CurrentPage == 1 ? "active pointerEvent"  : "") "><i class="fa-solid fa-arrow-left"></i></a>
-                    <div class="d-flex">
-                        @for (int i = 1; i <= ViewBag.TotalPage; i++)
-
-                        {
-                            <a class="page @(ViewBag.CurrentPage == i ?  "active pointerEvent" : "") " asp-controller="room" asp-action="index" asp-route-page="@i">@i</a>
-                        }
-
-                    </div>
-                    <a asp-controller="room" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)" class="next @(ViewBag.CurrentPage == ViewBag.TotalPage ?  "active pointerEvent" : "") "><i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+              
             </div>
         </section>
         <!-- room end -->
