@@ -30,32 +30,40 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td > @Html.DisplayFor(modelItem => item.Id)</td>
+                            <td> @Html.DisplayFor(modelItem => item.Id)</td>
                             <td> @Html.DisplayFor(modelItem => item.Name)</td>
                             <td class="text-success"> @Html.DisplayFor(modelItem => item.Email)</td>
-                            <td> @Html.DisplayFor(modelItem => item.Message)</td>
-                            <td> @Html.DisplayFor(modelItem => item.CreatedDate)</td>
-                            <td> 
-                                @for (int i = 0; i < @item.Star; i++)
+                            <td>
+                                @if (item.Message.Length > 30)
                                 {
-                                    <i style="color:gold" class="fa-solid fa-star"></i>
+                                    @(item.Message.Substring(0,30) + "...")
                                 }
+                                else
+
+                                    @item.Message
+
+                               }
+
+                                </td>
+                                <td> @Html.DisplayFor(modelItem => item.CreatedDate)</td>
+                                <td>
+                                  @item.Star
                             </td>
                             <td> @Html.DisplayFor(modelItem => item.RoomId)</td>
                             <td> @Html.DisplayFor(modelItem => item.Status)</td>
                             <td class="d-flex p-12">
-                             <a asp-controller="Comment" asp-action="LikeComment"   style="margin-left:10px" asp-route-id="@item.Id">
-                                 @if (item.Status==false)
+                                <a asp-controller="Comment" asp-action="LikeComment" style="margin-left:10px" asp-route-id="@item.Id">
+                                    @if (item.Status == false)
                                     {
-                                       @* <i style="font-size:20px" class="fa-regular fa-heart"></i>*@
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                        @* <i style="font-size:20px" class="fa-regular fa-heart"></i>*@
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                                     }
                                     else
                                     {
-                                       <i style="font-size:20px;color:red" class="fa-solid fa-heart"></i>
+                                        <i style="font-size:20px;color:red" class="fa-solid fa-heart"></i>
                                     }
                                 </a>
-                            <a asp-controller="comment" asp-action="deletecomment"  style="margin-left:10px" asp-route-id="@item.Id"><i style="font-size:20px" class="fa-solid fa-ban"></i></a>
+                                <a asp-controller="comment" asp-action="deletecomment" style="margin-left:10px" asp-route-id="@item.Id"><i style="font-size:20px" class="fa-solid fa-ban"></i></a>
                             </td>
                         </tr>
                     }

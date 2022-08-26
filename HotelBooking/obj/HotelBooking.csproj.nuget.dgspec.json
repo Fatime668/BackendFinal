@@ -260,6 +260,10 @@
             "System.Text.Json": {
               "target": "Package",
               "version": "[6.0.5, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.0.7, )"
             }
           },
           "imports": [

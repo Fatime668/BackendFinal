@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Booking>
+﻿
+@model List<Booking>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/HotelAdmin/Views/Shared/_Layout.cshtml";
@@ -31,18 +32,37 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td > @item.Id</td>
+                            <td> @item.Id</td>
                             <td>@item.AppUser.UserName</td>
                             <td> @item.ArrivalDate</td>
                             <td> @item.DepartureDate</td>
                             <td> @item.Adults</td>
                             <td> @item.Children</td>
-                            <td> @(item.BookingStatusId == 1 ? "Pending" : "Accepted") </td>
+                            @if (item.BookingStatusId == 1)
+                            {
+                                <td>
+                                    Pending
+                                </td>
+                            }
+                            else if (item.BookingStatusId == 2)
+                            {
+                                <td>
+                                    Accepted
+                                </td>
+                            }
+                            else
+                            {
+                            <td>
+                                Deleted
+                            </td>
+                            }
+
                             <td>
                                 @item.RoomId
                             </td>
                             <td class="d-flex p-2">
-                            <a asp-controller="booking" asp-action="accept" asp-route-id="@item.Id" class="btn btn-success" style="margin-left:10px" >Accept</a>
+                                <a asp-controller="booking" asp-action="accept" asp-route-id="@item.Id" class="btn btn-success" style="margin-left:10px">Accept</a>
+                                <a asp-controller="booking" asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger" style="margin-left:10px">Delete</a>
                             </td>
                         </tr>
                     }

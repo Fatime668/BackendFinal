@@ -244,23 +244,28 @@
                 </h1>
             </div>
             <div class="testimonial-carousel owl-carousel owl-theme">
-                @foreach (var item in Model.Testimonials)
+                @foreach (var item in Model.Comments.Where(p=>p.Status==true))
                 {
                     <div class="item">
                         <div class="txt">
-                            <h4>Best hotel!</h4>
+                            <h4>@item.Room.Title</h4>
                             <p>
-                                @item.Comment
+                                @item.Message
                             </p>
 
                         </div>
                         <div class="author d-flex align-items-center">
                             <div class="author-photo">
-                                <img src="~/assets/images/testimonial/@item.Image" alt="">
+                                <img src="~/assets/images/emojis/user (2).png" alt="">
                             </div>
                             <div>
-                                <div class="name">@item.Client</div>
-                                <div class="country">from France</div>
+                                <div class="name">@item.Name</div>
+                                <div class="country">
+                                    @for (int i = 0; i < @item.Star; i++)
+                                    {
+                                        <i style="color:gold" class="fa-solid fa-star"></i>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>

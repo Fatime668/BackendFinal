@@ -34,6 +34,8 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 .ToListAsync();
             return View(bookings);
         }
+        //AcceptReservation
+
         public async Task<IActionResult> Accept(int id)
         {
             Booking existedbooking = await _context
@@ -44,7 +46,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                 .FirstOrDefaultAsync();
             existedbooking.BookingStatusId = 2;
             await _context.SaveChangesAsync();
-           
+            
 
             string body = string.Empty;
             using (StreamReader reader = new StreamReader("wwwroot/admin/reservcomfirmed/index.html"))
@@ -69,6 +71,22 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             SendMail(existedbooking.AppUser.Email, body);
             return RedirectToAction(nameof(Index));
         }
+
+        //DeleteReservation
+        public async Task<IActionResult> Delete(int id)
+        {
+            Booking existedbooking = await _context
+                .Bookings
+                .Where(s => s.Id == id)
+                .Include(s => s.AppUser)
+                .Include(s => s.Room)
+                .FirstOrDefaultAsync();
+            existedbooking.BookingStatusId = 3;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
         [NonAction]
         public void SendMail(string email, string body)
         {

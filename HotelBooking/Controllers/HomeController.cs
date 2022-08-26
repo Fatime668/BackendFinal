@@ -19,12 +19,10 @@ namespace HotelBooking.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
         private readonly RoomService _roomService;
-        private readonly TestimonialService _testimonialService;
         public HomeController(ILogger<HomeController> logger,AppDbContext context)
         {
             _logger = logger;
             _roomService = new RoomService(context);
-            _testimonialService = new TestimonialService(context);
             _context = context;
 
         }
@@ -34,7 +32,6 @@ namespace HotelBooking.Controllers
             HomeVM model = new HomeVM
             {
                 Rooms = await _roomService.GetRooms(),
-                Testimonials = await _testimonialService.GetTestimonials(),
                 Galleries = await _context.Galleries.ToListAsync(),
                 Comments = await _context.Comments.ToListAsync()
 

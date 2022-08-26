@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+//using X.PagedList;
 
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
@@ -18,9 +19,9 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(/*int page=1*/)
         {
-            List<Category> categories = await _context.Categories.ToListAsync();
+            List<Category> categories = await _context.Categories/*.ToPagedList(page,3)*/.ToListAsync();
             return View(categories);
         }
         public IActionResult Create()
