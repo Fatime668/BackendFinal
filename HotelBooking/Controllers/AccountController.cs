@@ -92,7 +92,7 @@ namespace HotelBooking.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "iurvcokfqwjbykqw");
             smtp.Send(mail);
             TempData["Verify"] = true;
 
@@ -143,7 +143,7 @@ namespace HotelBooking.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "iurvcokfqwjbykqw");
             smtp.Send(mail);
             return RedirectToAction("Index", "Home");
         }

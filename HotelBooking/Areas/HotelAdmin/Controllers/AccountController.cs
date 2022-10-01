@@ -27,12 +27,10 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        //[Authorize(Roles = "Admin,SuperAdmin")]
         public IActionResult Index()
         {
             return View(_userManager.Users);
         }
-        //[Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> IsBlock(string id)
         {
             if (!ModelState.IsValid) return View();
@@ -51,7 +49,6 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         public IActionResult Login()
         {
             return View();

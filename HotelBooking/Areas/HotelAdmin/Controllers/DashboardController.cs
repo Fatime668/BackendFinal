@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace HotelBooking.Areas.HotelAdmin.Controllers
 {
     [Area("HotelAdmin")]
-    //[Authorize(Roles = "Admin,SuperAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class DashboardController : Controller
     {
         private readonly AppDbContext _context;

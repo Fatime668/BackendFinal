@@ -67,9 +67,9 @@
     </div>
     <div>
         <h4>Another Images: </h4>
-        @foreach (var image in Model.RoomPictures)
+        @foreach (var image in Model.RoomPictures.Where(p=>p.IsMain==false))
         {
-            <img style="width:150px; height:150px;"  src="~/assets/images/rooms/@image.Room.RoomPictures.FirstOrDefault(r=>r.IsMain==false).ImagePath" alt="Room Images" />
+            <img style="width:150px; height:150px;"  src="~/assets/images/rooms/@image.ImagePath" alt="Room Images" />
         }
     </div>
  <form method="post">

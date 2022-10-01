@@ -1,6 +1,7 @@
 ﻿@model RoomVM
 @{
     double avgstar = Model.Room.Comments.Count() > 0 ? (Model.Room.Comments.Sum(s => s.Star) / (double)Model.Room.Comments.Count()) : 0;
+    int commentcount = Model.Room.Comments.Count() > 0 ? Model.Room.Comments.Count() : 0;
 }
 
 <style>
@@ -15,12 +16,10 @@
 <section>
     <div class="container py-5">
         <div class="row d-flex justify-content-center">
-         
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h2 style="color:#32445D;font-weight:bold">Comments</h2>
+                    <h2 style="color:#32445D;font-weight:bold">@(commentcount) Comments</h2>
                     <strong>Rating scale -<span style="color:blue"> @((avgstar).ToString("0.0"))</span></strong>
                 </div>
-           
             <div>
                 @foreach (Comment review in Model.Comments)
                 {

@@ -33,7 +33,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             List<Booking> bookings = await _context.Bookings
                 .Include(b => b.AppUser)
                 .Include(b=>b.Status)
-                .Where(b=>b.Status.Status != "Delete")
+                .Where(b=>b.Status.Status != "Deleted")
                 .ToListAsync();
             return View(bookings.ToPagedList(page, 5));
         }
@@ -124,7 +124,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "iurvcokfqwjbykqw");
             smtp.Send(mail);
         }
         [NonAction]
@@ -146,7 +146,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "rjyrdjhayyzmywez");
+            smtp.Credentials = new NetworkCredential("fatimahasanzade954@gmail.com", "iurvcokfqwjbykqw");
             smtp.Send(mail);
         }
 
@@ -194,7 +194,6 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
                     worksheet.Cell(currentRow, 6).Value = report.RoomId;
                     worksheet.Cell(currentRow, 7).Value = report.ArrivalDate;
                     worksheet.Cell(currentRow, 8).Value = report.DepartureDate;
-
                     worksheet.Cell(currentRow, 9).Value = report.Status.Status;
 
 
