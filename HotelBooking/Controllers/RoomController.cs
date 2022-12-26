@@ -162,7 +162,7 @@ namespace HotelBooking.Controllers
             if (isReserved)
             {
                 TempData["IsReserved"] = true;
-                return RedirectToAction(nameof(Details));
+                return RedirectToAction("Details","Room");
             }
 
             booking.BookingStatusId = 1;

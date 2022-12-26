@@ -65,12 +65,12 @@
                                     <i class="fa-solid fa-xmark"></i>
                                 </label>
                             </div>
-                           <ul class="m-0 p-0">
+                            <ul class="m-0 p-0">
                                 <li><a href="/room/index">Rooms</a></li>
                                 <li class="ms-4"><a href="/gallery/index">Gallery</a></li>
                                 <li class="ms-4"><a href="/about/index">About Us</a></li>
                                 <li class="ms-4"><a class="active" href="/contact/index">Contact Us</a></li>
-                            </ul> 
+                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -180,6 +180,7 @@
                 </h2>
                 <div class="row">
                     <div class="touchUs col-lg-7 justify-content-center ">
+
                         <form method="post" class="contactForm">
                             <div class="row">
                                 <div class="col-md-6">
@@ -223,6 +224,7 @@
             </div>
         </section>
     </main>
+
     <!-- main end -->
     <!-- footer start -->
     <footer id="footer">
@@ -257,11 +259,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- script js -->
     <script src="~/assets/js/contact/script.js"></script>
+
     <script>
         $(document).ready(function() {
             if ($("#mailJs").length) {
                 Command: toastr["success"]("Your message has been sent successfully")
-
 
                 toastr.options = {
                     "closeButton": false,

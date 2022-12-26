@@ -112,7 +112,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(email));
-            mail.Subject = "Reservasiyaniz legv olundu!";
+            mail.Subject = "Rezervasiyanız ləğv olundu!";
 
 
 
@@ -134,7 +134,7 @@ namespace HotelBooking.Areas.HotelAdmin.Controllers
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("fatimahasanzade954@gmail.com", "Sochi");
             mail.To.Add(new MailAddress(email));
-            mail.Subject = "Reserviniz testiq olundu!";
+            mail.Subject = "Rezervasiyanız təstiq olundu!";
 
 
 

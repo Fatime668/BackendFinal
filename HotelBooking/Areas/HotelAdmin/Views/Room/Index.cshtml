@@ -44,7 +44,7 @@
                         <td>$ @Html.DisplayFor(modelItem => item.Price)</td>
                       
 
-                        <td> @Html.DisplayFor(modelItem => item.Size)</td>
+                        <td> @(item.Size + "kv") </td>
                         <td> 
                          @if (item.Description.Length > 20)
                                 {
